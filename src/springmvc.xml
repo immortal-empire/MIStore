@@ -19,21 +19,21 @@
   	<!-- 校验器注入到适配器中 -->
   	<mvc:annotation-driven></mvc:annotation-driven>
   	
-    <!-- 响应的配置 -->
+<!--     响应的配置
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     	<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
     	<property name="suffix" value=".jsp" />
-    </bean>
+    </bean> -->
+    <!-- 配置静态资源的访问 -->
+   	<mvc:default-servlet-handler/>
     
     <!-- 控制器类的对象管理 -->
     <!-- <bean name="/login.action" class="springmvc.controller.LoginController"/> -->
     <!-- <bean id="/login" class="springmvc.controller.LoginController"/> -->
 	<!-- 组件扫描的形式管理所有控制器 -->
-	<context:component-scan base-package="com.neu.controller"></context:component-scan>
-
+	<context:component-scan base-package="com.neu.controller,com.neu.util.controller,com.neu.prodetail.controller"></context:component-scan>
 	<!-- 组件扫描的形式管理所有的service -->
-   	<context:component-scan base-package="com.neu.model.service"></context:component-scan>
-
+   	<context:component-scan base-package="com.neu.model.service,com.neu.util.model.service,com.neu.prodetail.model.service"></context:component-scan>
    	<!-- 配置service不需要实现接口 -->
    	<aop:aspectj-autoproxy proxy-target-class="true"/>
 	

@@ -38,8 +38,7 @@
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 	    <!-- 组件扫描所有的mapper -->
 	    <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
-	    <property name="basePackage" value="com.neu.model.dao"/>
-	    
+	    <property name="basePackage" value="com.neu.model.dao,com.neu.util.model.dao,com.neu.prodetail.model.dao"/>
 	</bean>
 
 

@@ -12,6 +12,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
      <typeAliases>
 		 <!--  组件扫描的形式配置类别名，类别名就是类名 -->
 		 <package name="com.neu.model.bean"/>
+		 <package name="com.neu.util.model.bean"/>
+		 <package name="com.neu.prodetail.model.bean"/>
      </typeAliases>
      
 	

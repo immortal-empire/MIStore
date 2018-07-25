@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neu.util.model.dao.CustomerDAO" >  
+	
+	<insert id="saveCustomer" parameterType="Customer">
+		<selectKey keyProperty="id" order="BEFORE" resultType="int">
+             select IFNULL(max(id),0)+1 from customer
+        </selectKey>
+         insert into customer (id, Cname, Cpassword, Cphone, state) values(#{id}, #{Cname}, #{Cpassword}, #{Cphone}, #{state})
+	</insert>
+	   
+</mapper>
