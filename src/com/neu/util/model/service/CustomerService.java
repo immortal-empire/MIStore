@@ -17,4 +17,10 @@ public class CustomerService {
 		c.setState("1");
 		customerDao.saveCustomer(c);
 	}
+	
+	public Customer findCustomerVerify(Customer c) {
+		
+		c.setCphone(c.getCname());
+		return customerDao.findCustomerVerify(c);
+	}
 }

@@ -1,6 +1,8 @@
 package com.neu.prodetail.model.bean;
 
-import java.util.Date;
+import java.sql.Timestamp;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Product {
 	private Integer proId;
@@ -12,7 +14,8 @@ public class Product {
 	private Integer inventory;
 	private double sellingPrice;
 	private String proDescriptive;
-	private Date addtime;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8") 
+	private Timestamp addtime;
 	private String state;
 	
 	public Integer getProId() {
@@ -69,10 +72,10 @@ public class Product {
 	public void setProDescriptive(String proDescriptive) {
 		this.proDescriptive = proDescriptive;
 	}
-	public Date getAddtime() {
+	public Timestamp getAddtime() {
 		return addtime;
 	}
-	public void setAddtime(Date addtime) {
+	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
 	public String getState() {

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neu.prodetail.model.dao.ShoppingCartDAO" >
+	<select id="selectProductInCart" parameterType="int" resultType="ShoppingCart">
+		select * from shoppingcart where id=#{id}
+	</select>
+	
+	<update id="updateProNumInCart">
+		update shoppingcart set quantity=quantity+#{quantity} where id=#{id}
+	</update>
+	
+	<insert id="insertProIntoCart" parameterType="ShoppingCart">
+		insert into shoppingcart values(#{id}, #{cId}, #{proId}, #{productStatus},
+		#{price}, #{quantity}, #{purchaseType}, #{addTime})
+	</insert>
+</mapper>

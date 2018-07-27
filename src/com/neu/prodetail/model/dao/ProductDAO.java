@@ -1,5 +1,10 @@
 package com.neu.prodetail.model.dao;
 
-public class ProductDAO {
+import java.util.List;
 
+import com.neu.prodetail.model.bean.Product;
+
+public interface ProductDAO {
+	
+	public List<Product> getProductByCid(int cid);
 }

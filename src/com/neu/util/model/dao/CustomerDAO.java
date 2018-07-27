@@ -6,4 +6,6 @@ public interface CustomerDAO {
 	
 	public void saveCustomer(Customer c);
 
+	public Customer findCustomerVerify(Customer c);
+
 }
