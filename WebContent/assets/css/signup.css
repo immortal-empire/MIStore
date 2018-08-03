@@ -1,0 +1,34 @@
+.col-center-block {
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.logo-mi {
+	text-align: center;
+	margin: auto;	
+}
+
+.logo-poster {
+	text-align: center;
+	margin: 20px;
+	color:#ff8033;
+	font-family: Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial, sans-serif;
+}
+.a-submit-mi {
+	padding: 8px;
+	text-align: center;
+	border-color: #ff6700;
+	background-color: #ff6700;	
+}
+.to-signin {
+	padding: 10px;
+	text-align: right;	
+}
+.verification {
+	display: inline-block;
+}
+.input-blur {
+	border: 1px solid red;
+	color: red;
+}

@@ -1,0 +1,33 @@
+.fixed {  
+    position: fixed;  
+    top: 0;  
+    width: 100%;  
+    margin: 0 auto;  
+    left: 0;    
+    z-index: 10000;  
+}
+
+.config {
+	margin-top: 10px;
+	margin-right: 30px;
+	border: 1px solid #e3e3e3;
+}
+/*.config:focus {
+	border-color: #ff6700;
+}*/
+
+.phoneColor {
+	margin-top: 10px;
+	margin-right: 30px;
+	border: 1px solid #e3e3e3;
+}
+
+.a-submit-mi {
+	padding: 8px;
+	text-align: center;
+	border-color: #ff6700;
+	background-color: #ff6700;	
+}
+/*.phoneColor:focus {
+	border-color: #ff6700;
+}*/

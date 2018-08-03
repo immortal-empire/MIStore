@@ -1,18 +1,26 @@
 package com.neu.prodetail.model.bean;
 
-import java.util.Date;
+import java.sql.Timestamp;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.neu.util.model.bean.Customer;
 
 public class Comments {
 
 	private int commId;
 	private int cid;
 	private String cName;
+	private Customer customer;
+	private int proId;
 	private Product product;
 	private int orderid;
 	private int rank;
 	private String comment;
-	private Date commdate;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8") 
+	private Timestamp commdate;
 	private String commurl;
+	private List<String> commImageName;
 	public int getCommId() {
 		return commId;
 	}
@@ -24,6 +32,30 @@ public class Comments {
 	}
 	public void setCid(int cid) {
 		this.cid = cid;
+	}
+	public String getcName() {
+		return cName;
+	}
+	public void setcName(String cName) {
+		this.cName = cName;
+	}
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	public int getProId() {
+		return proId;
+	}
+	public void setProId(int proId) {
+		this.proId = proId;
+	}
+	public Product getProduct() {
+		return product;
+	}
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 	public int getOrderid() {
 		return orderid;
@@ -43,10 +75,10 @@ public class Comments {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	public Date getCommdate() {
+	public Timestamp getCommdate() {
 		return commdate;
 	}
-	public void setCommdate(Date commdate) {
+	public void setCommdate(Timestamp commdate) {
 		this.commdate = commdate;
 	}
 	public String getCommurl() {
@@ -55,26 +87,11 @@ public class Comments {
 	public void setCommurl(String commurl) {
 		this.commurl = commurl;
 	}
-	public String getCname() {
-		return cName;
+	public List<String> getCommImageName() {
+		return commImageName;
 	}
-	public void setCname(String cname) {
-		this.cName = cname;
+	public void setCommImageName(List<String> commImageName) {
+		this.commImageName = commImageName;
 	}
-	public Product getProduct() {
-		return product;
-	}
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-	@Override
-	public String toString() {
-		return "Comments [commId=" + commId + ", cid=" + cid + ", cname="
-				+ cName + ", product=" + product.toString() + ", orderid=" + orderid
-				+ ", rank=" + rank + ", comment=" + comment + ", commdate="
-				+ commdate + ", commurl=" + commurl + "]";
-	}
-
-	
 	
 }

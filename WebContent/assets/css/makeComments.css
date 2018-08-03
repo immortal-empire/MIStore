@@ -1,0 +1,53 @@
+.rating {
+  color: #ff3100;
+}
+.rating .rank-stars {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  white-space: nowrap;
+  display: inline-table;
+}
+.rating .rank-stars.rank-allow {
+  cursor: pointer;
+}
+.rating .fa {
+  display: table-cell;
+  font-size: 16px;
+  padding: 2px;
+}
+.rating .rank-allow .fa:hover:before,
+.rating .rank-allow .fa:hover ~ .fa:before,
+.rating .rank-stars .fa.star-active:before,
+.rating .rank-stars .fa.star-active ~ .fa:before {
+  content: "\f005";
+}
+.rating .rank-reviews {
+  color: #717f86;
+  margin-left: 6px;
+}
+.a-submit-mi {
+	padding: 8px;
+	text-align: center;
+	border-color: #ff6700;
+	background-color: #ff6700;	
+}
+#addfile{
+	width: 25%;
+	position:relative;
+	display: inline-block;
+}
+#addfile>img{
+	width: 100%;
+}
+
+#addfile>input{
+	width:100%;
+	height:100%;
+	position: absolute;
+	top: 0px;
+	left:0px;
+	opacity:0;
+}
+.addedphoto {
+	width: 28%;
+}

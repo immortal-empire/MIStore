@@ -3,6 +3,7 @@ package com.neu.prodetail.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.neu.prodetail.model.bean.CartProductInfo;
 import com.neu.prodetail.model.bean.Comments;
 import com.neu.prodetail.model.bean.CommodityOneType;
 import com.neu.prodetail.model.bean.Product;
@@ -118,4 +119,13 @@ public interface ProductDAO {
 	 * @author ¡ı–«–«
 	 */
 	List<Product> getFavorsByUserId(int userid);
+
+	public List<CartProductInfo> getProductByCid(int cid);
+
+	public Product getCartInfoByProId(int proId);
+
+	public List<Product> getAllProductByComtyId(int comtyId);
+
+	public List<Product> getProductInfoByComttyId(int comttyId);
 }
+

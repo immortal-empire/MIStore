@@ -1,9 +1,12 @@
 package com.neu.prodetail.model.bean;
 
-import java.util.Date;
+import java.sql.Timestamp;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Product {
 	private Integer proId;
+	private Integer comttyId;
 	private CommodityTwoType twoType;
 	private String proName;
 	private String color;
@@ -12,7 +15,8 @@ public class Product {
 	private Integer inventory;
 	private double sellingPrice;
 	private String proDescriptive;
-	private Date addtime;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8") 
+	private Timestamp addtime;
 	private String state;
 	private int volume;//销量，临时查询需要
 	private int isFavor;//在搜索时，判断该商品是否是用户的收藏品
@@ -72,10 +76,10 @@ public class Product {
 	public void setProDescriptive(String proDescriptive) {
 		this.proDescriptive = proDescriptive;
 	}
-	public Date getAddtime() {
+	public Timestamp getAddtime() {
 		return addtime;
 	}
-	public void setAddtime(Date addtime) {
+	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
 	public String getState() {
@@ -96,15 +100,17 @@ public class Product {
 	public void setFavor(int isFavor) {
 		this.isFavor = isFavor;
 	}
+	public Integer getComttyId() {
+		return comttyId;
+	}
+	public void setComttyId(Integer comttyId) {
+		this.comttyId = comttyId;
+	}
+	public int getIsFavor() {
+		return isFavor;
+	}
+	public void setIsFavor(int isFavor) {
+		this.isFavor = isFavor;
+	}
 	
-	@Override
-	public String toString() {
-		return "Product [proId=" + proId + ", twoType=" + twoType
-				+ ", proName=" + proName + ", color=" + color
-				+ ", configuration=" + configuration + ", picture=" + picture
-				+ ", inventory=" + inventory + ", sellingPrice=" + sellingPrice
-				+ ", proDescriptive=" + proDescriptive + ", addtime=" + addtime
-				+ ", state=" + state + ", volume=" + volume + ", isFavor="
-				+ isFavor + "]";
-	}	
 }

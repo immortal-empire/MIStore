@@ -1,4 +1,4 @@
-package com.neu.prodetail.model.util;
+package com.neu.util;
 
 import java.io.IOException;
 import java.io.StringReader;

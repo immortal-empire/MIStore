@@ -10,18 +10,37 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.neu.prodetail.model.bean.CartProductInfo;
 import com.neu.prodetail.model.bean.Comments;
 import com.neu.prodetail.model.bean.CommodityOneType;
-import com.neu.prodetail.model.bean.CommodityTwoType;
 import com.neu.prodetail.model.bean.Product;
 import com.neu.prodetail.model.dao.ProductDAO;
-import com.neu.prodetail.model.util.IkSegmentation;
+import com.neu.util.IkSegmentation;
+
 
 @Service
 public class ProductService {
-
+	
 	@Autowired
 	private ProductDAO productDAO;
+		
+	public List<CartProductInfo> getProductByCid(int cid) {
+		List<CartProductInfo> Cart = productDAO.getProductByCid(cid);
+		for(CartProductInfo c : Cart) {
+			c.setIsChecked(false);
+			c.setIsLiked("0");
+		}
+		return Cart;
+	}
+	
+	public List<Product> getAllProductByComtyId(int comtyId) {
+		return productDAO.getAllProductByComtyId(comtyId);
+	}
+	
+	public List<Product> getProductInfoByComttyId(int comttyId) {
+		return productDAO.getProductInfoByComttyId(comttyId);
+	}
+
 		
 	/**
 	 * bannerProducts
