@@ -13,5 +13,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="findCustomerVerify" parameterType="Customer" resultType="Customer">
 		select * from customer where state='1' and Cpassword=#{Cpassword} and (Cname=#{Cname} or Cphone=#{Cphone})
+	</select>
+	
+	<select id="getCustomerByCphone" parameterType="String" resultType="Customer">
+		select * from customer where state='1' and Cphone=#{phone}
 	</select>   
 </mapper>

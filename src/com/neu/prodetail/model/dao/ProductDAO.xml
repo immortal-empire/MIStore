@@ -9,4 +9,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<resultMap type="CartProductInfo" id="result"></resultMap>
+	
+	<select id="getCartInfoByProId" parameterType="int" resultType="Product">
+		select * from product where proId=#{proId} and state='1'
+	</select>
+	
+	<select id="getAllProductByComtyId" parameterType="int" resultType="Product">
+		SET &#64;row=0&#59; 
+		SET &#64;groupid=''&#59;
+		select * from ( select *,case when &#64;groupid=comttyId then &#64;row:=&#64;row+1 else &#64;row:=1 end rownum,&#64;groupid:=comttyId from
+		(select c.* from commoditytwotype_info b, product c where b.comtyId = #{comtyId} and b.comttyId = c.comttyId and c.state = 1) m
+		order by m.comttyId,m.sellingPrice
+		)n
+		where n.rownum &lt;=1
+	</select>
+	
+	<select id="getProductInfoByComttyId" parameterType="int" resultType="Product">
+		select * from product where comttyId=#{comttyId} and state='1'
+	</select>
+	
 </mapper>

@@ -27,6 +27,13 @@
     <!-- 配置静态资源的访问 -->
    	<mvc:default-servlet-handler/>
     
+    <!-- 配置二进制提交方式，配置文件上传组件 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		 <!-- 设置上传文件的最大尺寸为5MB -->
+		 <property name="maxUploadSize">
+			 <value>5242880</value>
+		 </property>
+    </bean>
     <!-- 控制器类的对象管理 -->
     <!-- <bean name="/login.action" class="springmvc.controller.LoginController"/> -->
     <!-- <bean id="/login" class="springmvc.controller.LoginController"/> -->

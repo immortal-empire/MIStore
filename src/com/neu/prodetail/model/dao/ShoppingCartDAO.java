@@ -12,4 +12,8 @@ public interface ShoppingCartDAO {
 
 	public void insertProIntoCart(ShoppingCart c);
 
+	public ShoppingCart selectProductInCartBycid(@Param("cid")int cid, @Param("proId")int proId);
+
+	public void addProNumInCart(Integer id);
+
 }

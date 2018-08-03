@@ -8,4 +8,6 @@ public interface CustomerDAO {
 
 	public Customer findCustomerVerify(Customer c);
 
+	public Customer getCustomerByCphone(String phone);
+
 }

@@ -23,4 +23,9 @@ public class CustomerService {
 		c.setCphone(c.getCname());
 		return customerDao.findCustomerVerify(c);
 	}
+	
+	public Customer getCustomerByCphone(String phone) {
+		
+		return customerDao.getCustomerByCphone(phone);
+	}
 }

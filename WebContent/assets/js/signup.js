@@ -1,5 +1,6 @@
 var Ifphone=0;
 var Ifcode=0;
+var verifyCode;
 $("#phoneNum").blur(function(){
 	var phone=$("#phoneNum").val();
 	//alert(phone);
@@ -64,13 +65,29 @@ $("#verifyCode").focus(function(){
 
 $("#getCode").click(function(){
 	var msg = $(this).text();
+	var phone=$("#phoneNum").val();
+	$.ajax({
+		type:"post",
+		url:"getCode/"+phone,
+		dataType:"json",
+		async:true,
+		success: function(data) {
+			console.log(data);
+			console.log(data.result);
+			verifyCode = data.result;
+			if(verifyCode == false) {
+				alert("不好意思，该用户已注册！");
+			}
+		}
+	});
 	alert(msg);
 	$(this).unbind('click');
 	settime();
+	
 });
 
 var myVar;
-var countdown = 10;
+var countdown = 60;
 function settime() {
 	
     if(countdown == 0) {
@@ -79,11 +96,26 @@ function settime() {
     	$("#getCode").bind('click',function(){
 			var msg = $("#getCode").text();
 			alert(msg);
+			var phone=$("#phoneNum").val();
+			$.ajax({
+				type:"post",
+				url:"getCode/"+phone,
+				dataType:"json",
+				async:true,
+				success: function(data) {
+					console.log(data);
+					console.log(data.result);
+					verifyCode = data.result;
+					if(verifyCode == false) {
+						alert("不好意思，该用户已注册！");
+					}
+				}
+			});
 			$(this).unbind('click');
 			settime();
 		});//如果传入的是getCode(),函数将会自动执行
         $("#getCode").text("获取短信验证码");
-        countdown = 10;
+        countdown = 60;
     } else {
         $("#getCode").text("重新发送(" + countdown + ")");
         countdown--;
@@ -100,7 +132,14 @@ $("#register").click(function(){
 		
 		if(Ifcode ==1 && Ifphone ==1) {
 			alert("符合条件，可发起请求");
-			location.href="signupDetail.html?"+"phone="+phone;
+			if(code == verifyCode) {
+				alert("注册成功！");
+				location.href="signupDetail.html?"+"phone="+phone;
+			}else{
+				alert("验证码输入有误！");
+			}
+	
+			
 		}
 	}else {
 		alert("复选框没有选中");

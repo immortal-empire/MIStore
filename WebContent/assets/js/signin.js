@@ -66,7 +66,7 @@ $("#login").click(function(){
 	if($("#remember_account").prop('checked')) {
 		alert("记住用户名密码");		
 	}
-	location.href="addShoppingCart.html?"+"comttyId="+1;
+	//location.href="addShoppingCart.html?"+"comttyId="+1;
 	if(Ifname ==1 && Ifpassword ==1) {
 		//alert("符合条件，可发起请求");
 		
@@ -84,16 +84,20 @@ $("#login").click(function(){
 				console.log(data);
 				//alert(data.cname);
 				window.localStorage.setItem("user",JSON.stringify(data));
+				var user = window.localStorage.getItem("user");
+				console.log(user);
 	            console.log(typeof window.localStorage["user"]);
 	            //updateCart(data.id);
 	            var old = window.localStorage.getItem("products");
+	            alert(old);
 				if( old== null || old.length == 0) {
 					getProductInCart(data.id);
 					console.log("LocalStorage中没有商品,从数据库中读取");
 				}else {
+					alert("LocalStorage中有商品, 更新数据库");
 					updateCart(data.id,JSON.parse(old));
 				}
-				//location.href="addShoppingCart.html?"+"proId="+1;
+				//location.href="addShoppingCart.html?"+"comttyId="+1;
 			},
 //	        error : function(XMLHttpRequest, textStatus, errorThrown) {
 //	        	//这个error函数调试时非常有用，如果解析不正确，将会弹出错误框

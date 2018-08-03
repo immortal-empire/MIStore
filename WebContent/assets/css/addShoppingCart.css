@@ -21,6 +21,13 @@
 	margin-right: 30px;
 	border: 1px solid #e3e3e3;
 }
+
+.a-submit-mi {
+	padding: 8px;
+	text-align: center;
+	border-color: #ff6700;
+	background-color: #ff6700;	
+}
 /*.phoneColor:focus {
 	border-color: #ff6700;
 }*/

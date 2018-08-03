@@ -7,8 +7,10 @@ public class ShoppingCart {
 	private Integer cId;
 	private Integer proId;
 	private String productStatus;
+	//@Column(name = "price", columnDefinition="double(10,2) default '0.00'")
 	private double price;
 	private Integer quantity;
+	private String islike;//ĞÂÔöÊôĞÔ
 	private String purchaseType;
 	private Date addTime;
 	
@@ -59,5 +61,11 @@ public class ShoppingCart {
 	}
 	public void setAddTime(Date addTime) {
 		this.addTime = addTime;
+	}
+	public String getIslike() {
+		return islike;
+	}
+	public void setIslike(String islike) {
+		this.islike = islike;
 	}
 }

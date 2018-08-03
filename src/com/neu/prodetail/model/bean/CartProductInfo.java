@@ -8,7 +8,7 @@ public class CartProductInfo {
 	private Integer id;
 	private Integer cId;
 	private Integer proId;
-	private String productStatus;
+	private String productStatus;//购物车中商品状态，默认为‘1’可结算
 	private double price;
 	private Integer quantity;
 	
