@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 9 ]> <html lang="en" dir="ltr" class="no-js ie-old"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" dir="ltr" class="no-js ie9"> <![endif]-->
+<!--[if IE 10 ]> <html lang="en" dir="ltr" class="no-js ie10"> <![endif]-->
+<!--[if (gt IE 10)|!(IE)]><!-->
+<html lang="en" dir="ltr" class="no-js">
+<!--<![endif]-->
+
+<head>
+   <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>小米商城 - 小米8、小米MIX 2S、红米6 Pro、小米电视官方网站</title>
+    <meta name="description" content="FRIDAY is a responsive multipurpose-ecommerce site template allows you to store coupons and promo codes from different brands and create store for deals, discounts, It can be used as coupon website such as groupon.com and also as online store">
+    <meta name="black friday, coupon, coupon codes, coupon theme, coupons, deal news, deals, discounts, ecommerce, friday deals, groupon, promo codes, responsive, shop, store coupons">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="CODASTROID">
+
+    <link rel="icon" href="assets/images/favicon/favicon.ico">
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/vendors/linearicons/css/linearicons.css" rel="stylesheet">
+    <link href="assets/vendors/owl-carousel/owl.carousel.min.css" rel="stylesheet">
+    <link href="assets/vendors/owl-carousel/owl.theme.min.css" rel="stylesheet">
+    <link href="assets/css/layui.css" rel="stylesheet">
+    <link href="assets/css/base.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+</head>
+
+<body id="body" class="wide-layout preloader-active">
+    <div id="preloader" class="preloader">
+        <div class="loader-cube">
+            <div class="loader-cube__item1 loader-cube__item"></div>
+            <div class="loader-cube__item2 loader-cube__item"></div>
+            <div class="loader-cube__item4 loader-cube__item"></div>
+            <div class="loader-cube__item3 loader-cube__item"></div>
+        </div>
+    </div>
+
+    <div id="pageWrapper" class="page-wrapper">
+		<div id="header"></div>
+
+        <!-- –––––––––––––––[ PAGE CONTENT ]––––––––––––––– -->
+        <main id="mainContent" class="main-content">
+            <div class="page-container ptb-60">
+                <div class="container">  
+                    <div class="section coupons-area coupons-area-grid">
+
+                        <!-- Page Control -->
+                    	<section class="stores-area stores-area-v2">
+                              		            
+                        <div id="controlPanel" class="stores-cat panel mb-40">
+                            <ul class="row stores-cat-body">
+                                <li class="col-sm-4">
+                                    <ul class="list-control-view list-inline">
+                                		<li><a href="#"><i class="fa fa-bars"></i></a></li>
+                                		<li><a href="#"><i class="fa fa-th"></i></a></li>
+                                		<li id="latestProduct"><span><a>新品</a></span></li>
+                                		<li>|</li>
+                                		<li id="sortByPrice"><span><a>价格&nbsp;&nbsp;<i class="fa fa-long-arrow-up"></i></a></span></li>
+                                		<li>|</li>
+                                		<li id="sortByVolume"><span><a>销量&nbsp;&nbsp;<i class="fa fa-long-arrow-up"></i></a></span></li>
+                                    </ul>
+                                </li>
+                                <li class="col-sm-4">
+                                
+                                </li>
+                                <li class="col-sm-4">
+                                    <ul class="list-control-view list-inline">
+                                		<!--  
+                                		<li>
+                                			<div class="custom-checkbox mb-20">
+                                        	<input type="checkbox" id="tehui">
+                                        	<label class="color-mid" for="tehui">仅显示特惠商品</label>
+                                    		</div>
+                                		</li>
+                                		-->
+                                		<li>
+                                			<div class="custom-checkbox mb-20">
+                                        	<input type="checkbox" id="isAvailable">
+                                        	<label class="color-mid" for="isAvailable">仅显示有货商品</label>
+                                    		</div>
+                                		</li>                        
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                       </section>
+                                              
+                        <div id="resultDisplay" class="row row-masnory row-tb-20"></div>
+
+						<!-- 模态框（Modal）收藏失败时弹出 -->
+						<div class="modal fade" id="collectFailed" tabindex="-1" role="dialog" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" 
+												aria-hidden="true">×
+										</button>
+										<h4 class="modal-title" id="myModalLabel">
+											收藏失败
+										</h4>
+									</div>
+									<div class="modal-body">
+										您还未登录，请先登录！
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" 
+												data-dismiss="modal">关闭
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>						
+						
+                        <!-- Page Pagination -->
+                        <div class="page-pagination text-center mt-30 p-10 panel" style="display: none;">
+                        	<div id="pagination"></div>
+                        </div>
+                        <!-- End Page Pagination -->
+                    </div>
+                </div>
+            </div>
+        </main>
+		
+		<div id="footer"></div> 
+    </div>
+
+    <div id="backTop" class="back-top is-hidden-sm-down">
+        <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </div>
+
+    <script type="text/javascript" src="assets/js/jquery-1.12.3.min.js"></script>  
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/vendors/modernizr/modernizr-2.6.2.min.js"></script>
+    <script type="text/javascript" src="assets/vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.tmpl.js"></script>
+    <script type="text/javascript" src="assets/js/layui.all.js"></script>  
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    <script type="text/javascript" src="assets/js/search_product.js"></script>
+     
+    
+    <script id="resultItem" type="text/x-jquery-tmpl">
+	    <div class="col-sm-4 col-md-3 col-lg-3">
+		    <div class="coupon-single panel t-center">
+
+		        <div class="row">
+		            <div class="col-xs-12">
+		                <div class="text-center p-20">
+		                    <img class="store-logo" src="assets/images/coupons/coupon_01.jpg" alt="">
+		                </div>
+		            </div>
+					<input type="hidden" value="${proId}">
+		            <div class="col-xs-12">
+		                <div class="panel-body">
+		                    <h5 class="deal-title mb-10">
+		                        <a href="#" title="总销量 ${volume}件">${proName}&nbsp;&nbsp;&nbsp;${configuration}</a>
+		                    </h5>
+	               			 <div class="entry-meta mb-10">
+	                    		<ul class="tag-info list-inline" style="font-size:10px;">
+	                        		<li> ${proDescriptive}</li>                     
+	                    		</ul>
+	                		</div>
+		                    <h4 class="mb-10 t-uppercase" style="color: orangered;">${sellingPrice}元</h4>
+					    	<hr/>
+						    <div style="padding-left: 10%;padding-right: 20%;">
+             				 {{if isFavor > 0}}
+						    	<i class="fa fa-heart fa-lg fa-pull-left" style="color:red;"></i>
+             				{{else}}
+								<i class="fa fa-heart-o fa-lg fa-pull-left"></i>
+            				{{/if}}
+								<i class="fa fa-cart-plus fa-lg fa-pull-right"></i>
+	                		</div>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+    </script>
+    <script id="result404" type="text/x-jquery-tmpl">
+		<section class="error-page-area">
+		    <div class="container">
+		        <div class="error-page-wrapper t-center">
+		            <div class="error-page-footer">
+		                <h2 class="t-uppercase m-10">抱歉，没有搜索到与
+		                	<div style="color: orangered;display: inline;">${$item.getKeyword()}</div> 相关的商品
+		                </h2>
+		                <h5 class="color-mid mb-5"></h5>
+		                <p class="color-muted mb-30 font-15">
+		                	请检查您的输入是否有误<br>
+		            		如有任何意见或建议，期待您反馈给我们                                		
+		                </p>
+		            </div>
+		        </div>
+		    </div>
+		</section>    
+    </script>
+</body>
+
+</html>

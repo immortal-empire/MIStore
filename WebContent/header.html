@@ -8,9 +8,9 @@
                 <div id="welcome" class="col-sm-12 col-md-4 is-hidden-sm-down">
                     <ul class="nav-top nav-top-left list-inline t-left">
                         <li>
-                        	<a href="index.html">
+                        	<a>
                         		<i class="fa fa-home"></i>
-                        		<div id="wlcmsg" style="display: inline;">请登录</div>
+                        		<div id="welcomeMessage" style="display: inline;">请登录</div>
                         	</a>
                         </li>
                     </ul>
@@ -40,8 +40,8 @@
         <div class="container">
             <div class="row row-rl-0 row-tb-20 row-md-cell">
                 <div class="brand col-md-3 t-xs-center t-md-left valign-middle">
-                    <a href="#" class="logo">
-                        <img src="assets/images/logo.png" alt="" width="250">
+                    <a href="index.html" class="logo">
+                        <img src="assets/images/favicon/logo.png" alt="" width="250">
                     </a>
                 </div>
                 <div class="header-search col-md-9">
@@ -51,7 +51,7 @@
                             		
                                 <div class="input-group">
                                 	<div>
-	                                    <input name="keyword" id="searchProduct" type="text" class="form-control input-lg search-input" placeholder="输入关键词进行搜索..." required="required">                                                     		                        		                                   		                                          
+	                                    <input name="keyword" id="searchProduct" type="text" class="form-control input-lg search-input" placeholder="输入关键词进行搜索..." required="required" value="">                                                     		                        		                                   		                                          
 	                       				<div class="tags" style="position:absolute;margin-left: 35%;margin-right: 55%;padding-top: 5px;">
 		                                    <a href="#" class="badge">小米8</a>
 	                               		</div>
@@ -59,10 +59,7 @@
                                     <div class="input-group-btn">
                                         <div class="input-group">
                                             <select id="proType" name="proType" class="form-control input-lg search-select">
-                                                <option value="">商品分类</option>
-                                                <option value="11">1</option>
-                                                <option value="22">2</option>
-                                                <option value="33">3</option>
+                                                <option value="-1">全部分类</option>
                                             </select>
                                             <div class="input-group-btn">
                                                 <button id="searchBtn" type="button" class="btn btn-lg btn-search btn-block">
@@ -84,7 +81,7 @@
                                 </a>
                             </div>
                             <div class="header-wishlist ml-20">
-                                <a href="wishlist.html">
+                                <a id="myFavors">
                                     <span class="icon lnr lnr-heart font-30"></span>
                                     <span class="title">我的<br>收藏</span>
                                 </a>
@@ -118,86 +115,41 @@
                         </li>                        
                         <li class="dropdown-mega-menu">
                             <a href="deals_grid.html">小米手机</a>
+                            <input type="hidden" value="1">
                             <div class="mega-menu">
-                                <div class="row row-v-10">
-                                    <div class="col-md-2">
-                                        <figure class="deal-thumbnail embed-responsive embed-responsive-4by3" 
-                                        	data-bg-img="assets/images/deals/deal_03.jpg">                                              
-                                        </figure>
-                                        <div class="caption" style="margin:10px 5px;letter-spacing: 1.6pt;">
-								         	<p class="text-center">小米8</p>
-								         	<p class="text-center text-danger">2689起</p>
-										</div>
-                                    </div>                                              
-                                </div>
+                                <div class="row row-v-10"></div>
                             </div>
                         </li>
                         
                         <li class="dropdown-mega-menu">
                             <a href="deals_grid.html">电视</a>
+                            <input type="hidden" value="2">
                             <div class="mega-menu">
-                                <div class="row row-v-10">
-                                    <div class="col-md-2">
-                                        <figure class="deal-thumbnail embed-responsive embed-responsive-4by3" 
-                                        	data-bg-img="assets/images/deals/deal_03.jpg">                                              
-                                        </figure>
-                                        <div class="caption" style="margin:10px 5px;letter-spacing: 1.6pt;">
-								         	<p class="text-center">小米8</p>
-								         	<p class="text-center text-danger">2689起</p>
-										</div>
-                                    </div>                                              
-                                </div>
+                                <div class="row row-v-10"></div>
                             </div>
                         </li>  
                         
                         <li class="dropdown-mega-menu">
                             <a href="deals_grid.html">笔记本</a>
+                            <input type="hidden" value="3">
                             <div class="mega-menu">
-                                <div class="row row-v-10">
-                                    <div class="col-md-2">
-                                        <figure class="deal-thumbnail embed-responsive embed-responsive-4by3" 
-                                        	data-bg-img="assets/images/deals/deal_03.jpg">                                              
-                                        </figure>
-                                        <div class="caption" style="margin:10px 5px;letter-spacing: 1.6pt;">
-								         	<p class="text-center">小米8</p>
-								         	<p class="text-center text-danger">2689起</p>
-										</div>
-                                    </div>                                              
-                                </div>
+                                <div class="row row-v-10"></div>
                             </div>
                         </li>  
                         
                         <li class="dropdown-mega-menu">
                             <a href="deals_grid.html">智能家电</a>
+                            <input type="hidden" value="4">
                             <div class="mega-menu">
-                                <div class="row row-v-10">
-                                    <div class="col-md-2">
-                                        <figure class="deal-thumbnail embed-responsive embed-responsive-4by3" 
-                                        	data-bg-img="assets/images/deals/deal_03.jpg">                                              
-                                        </figure>
-                                        <div class="caption" style="margin:10px 5px;letter-spacing: 1.6pt;">
-								         	<p class="text-center">小米8</p>
-								         	<p class="text-center text-danger">2689起</p>
-										</div>
-                                    </div>                                              
-                                </div>
+                                <div class="row row-v-10"></div>
                             </div>
                         </li> 
                         
                         <li class="dropdown-mega-menu">
                             <a href="deals_grid.html">健康家居</a>
+                            <input type="hidden" value="5">
                             <div class="mega-menu">
-                                <div class="row row-v-10">
-                                    <div class="col-md-2">
-                                        <figure class="deal-thumbnail embed-responsive embed-responsive-4by3" 
-                                        	data-bg-img="assets/images/deals/deal_03.jpg">                                              
-                                        </figure>
-                                        <div class="caption" style="margin:10px 5px;letter-spacing: 1.6pt;">
-								         	<p class="text-center">小米8</p>
-								         	<p class="text-center text-danger">2689起</p>
-										</div>
-                                    </div>                                              
-                                </div>
+                                <div class="row row-v-10"></div>
                             </div>
                         </li>                                  
                     </ul>
@@ -207,9 +159,46 @@
     </div>
     <!-- End Header Menu -->
 
-</header>
+	</header>
+
+	<!-- 模态框（Modal）收藏失败时弹出 -->
+	<div class="modal fade" id="notLogin" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" 
+							aria-hidden="true">×
+					</button>
+					<h4 class="modal-title" id="myModalLabel">
+						还未登录
+					</h4>
+				</div>
+				<div class="modal-body">
+					您还未登录，请先登录！
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" 
+							data-dismiss="modal">关闭
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 <script src="assets/js/jquery-1.12.3.min.js"></script>
 <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="assets/js/main.js"></script>
+<script type="text/javascript" src="assets/js/jquery.tmpl.js"></script>
 <script type="text/javascript" src="assets/js/header.js"></script>
+
+<script id="dropProduct" type="text/x-jquery-tmpl">
+    <div class="col-md-2">
+        <figure class="deal-thumbnail embed-responsive embed-responsive-4by3" 
+        	data-bg-img="assets/images/deals/deal_03.jpg">                                              
+        </figure>
+        <div class="caption" style="margin:10px 5px;letter-spacing: 1.6pt;">
+         	<p class="text-center">${$item.getCategoryName()}</p>
+         	<p class="text-center text-danger">${sellingPrice}起</p>
+		</div>
+    </div>  
+</script>                                  

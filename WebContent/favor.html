@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<!--[if lt IE 9 ]> <html lang="en" dir="ltr" class="no-js ie-old"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" dir="ltr" class="no-js ie9"> <![endif]-->
+<!--[if IE 10 ]> <html lang="en" dir="ltr" class="no-js ie10"> <![endif]-->
+<!--[if (gt IE 10)|!(IE)]><!-->
+<html lang="en" dir="ltr" class="no-js">
+	<!--<![endif]-->
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>小米商城 - 小米8、小米MIX 2S、红米6 Pro、小米电视官方网站</title>
+		<link rel="icon" href="assets/images/favicon/favicon.ico">
+
+		<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+		<link href="assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+		<link href="assets/vendors/linearicons/css/linearicons.css" rel="stylesheet">
+		<link href="assets/css/layui.css" rel="stylesheet">
+		<link href="assets/css/base.css" rel="stylesheet">
+		<link href="assets/css/style.css" rel="stylesheet">
+	</head>
+
+	<body id="body" class="wide-layout preloader-active">
+		<div id="preloader" class="preloader">
+			<div class="loader-cube">
+				<div class="loader-cube__item1 loader-cube__item"></div>
+				<div class="loader-cube__item2 loader-cube__item"></div>
+				<div class="loader-cube__item4 loader-cube__item"></div>
+				<div class="loader-cube__item3 loader-cube__item"></div>
+			</div>
+		</div>
+
+		<div id="pageWrapper" class="page-wrapper">
+			<div id="header"></div>
+
+			<main id="mainContent" class="main-content">
+				<div class="page-container ptb-60">
+					<div class="container">
+						<div class="row row-rl-10 row-tb-20">
+							<div class="page-sidebar col-md-4 col-sm-5 col-xs-12">
+								<aside class="sidebar blog-sidebar">
+									<div class="row row-tb-10">
+										<div class="col-xs-12">
+											<div class="widget categories-widget panel pt-20 prl-20">
+												<div class="widget-header">
+													<h3 class="widget-title h-title">订单中心</h3>
+												</div>
+												<div class="widget-body ptb-20">
+													<ul>
+														<li>
+															<a href="#">我的订单</a>
+														</li>
+														<li>
+															<a href="#">团购订单 </a>
+														</li>
+														<li>
+															<a href="#">晒单评价</a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div class="col-xs-12">
+											<div class="widget categories-widget panel pt-20 prl-20">
+												<div class="widget-header">
+													<h3 class="widget-title h-title">个人中心</h3>
+												</div>
+												<div class="widget-body ptb-20">
+													<ul>
+														<li>
+															<a href="#">我的个人中心</a>
+														</li>
+														<li>
+															<a href="#">小米礼品卡</a>
+														</li>
+														<li>
+															<a href="favor.html">喜欢的商品</a>
+														</li>
+														<li>
+															<a href="#">地址管理</a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div class="col-xs-12">
+											<div class="widget archive-widget panel pt-20 prl-20">
+												<h3 class="widget-title h-title">账户管理</h3>
+												<div class="widget-content ptb-20">
+													<ul>
+														<li>
+															<a href="#">个人信息</a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</aside>
+							</div>
+
+							<div class="page-content col-xs-12 col-sm-7 col-md-8">
+								<div class="wishlist-wrapper">
+									<h3 class="h-title mb-40 t-uppercase">喜欢的商品</h3>
+									<table class="wishlist">
+										<tbody id="favorlist">
+										</tbody>
+									</table>
+								</div>
+		                        <div class="page-pagination text-center mt-30 p-10 panel" style="display: none;">
+	                        		<div id="pagination"></div>
+	                        	</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</main>
+
+			<div id="footer"></div>
+		</div>
+
+		<div id="backTop" class="back-top is-hidden-sm-down">
+			<i class="fa fa-angle-up" aria-hidden="true"></i>
+		</div>
+
+		<script type="text/javascript" src="assets/js/jquery-1.12.3.min.js"></script>
+		<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="assets/vendors/modernizr/modernizr-2.6.2.min.js"></script>
+		<script type="text/javascript" src="assets/js/jquery.tmpl.js"></script>
+		<script type="text/javascript" src="assets/js/layui.all.js"></script>
+		<script type="text/javascript" src="assets/js/main.js"></script>
+		<script type="text/javascript" src="assets/js/favor.js"></script>
+		
+		<script id="favorItem" type="text/x-jquery-tmpl">
+			<tr class="panel alert">
+				<td class="col-sm-8 col-md-9">
+					<div class="media-left is-hidden-sm-down">
+						<figure class="product-thumb">
+							<img src="assets/images/cart/product_11.jpg" alt="product">
+						</figure>
+					</div>
+					<div class="media-body valign-middle">
+						<input type="hidden" value="${proId}">		
+						<h5 class="title mb-5 t-uppercase"><a href="#">${proName}&nbsp;&nbsp;${color}&nbsp;&nbsp;${configuration}</a></h5>					
+						<h4 class="price" style="color: orangered;">￥${sellingPrice}</h4>			
+					</div>
+				</td>
+				<td class="col-sm-3 col-md-2 is-hidden-xs-down">
+					<button class="btn btn-rounded btn-sm">查看详情</button>
+				</td>
+				<td class="col-sm-1">
+					<button type="button" class="close pr-xs-0 pr-sm-10" data-dismiss="alert" aria-hidden="true">
+		            <i class="fa fa-trash-o"></i>
+		        </button>
+				</td>
+			</tr>
+		</script>
+		<script id="noItem" type="text/x-jquery-tmpl">
+	        <div class="error-page-wrapper t-center">
+		        <div class="error-page-footer">
+		            <h2 class="t-uppercase m-10" style="color:orangered;">还没有喜欢的商品哦，快去进行挑选吧！</h2>
+		            <h5 class="color-mid mb-5"></h5>
+		            <p class="color-muted mb-30 font-15">
+		            	可根据商品名进行搜索或查看全部分类<br>
+		        		寻找自己喜欢的商品                          		
+		            </p>
+		        </div>
+		    </div>		
+		</script>
+		<script id="notLogin" type="text/x-jquery-tmpl">
+	        <div class="error-page-wrapper t-center">
+		        <div class="error-page-footer">
+		            <h2 class="t-uppercase m-10" style="color:orangered;">还未登录哦，请先登录再进行查看吧！</h2>
+		            <h5 class="color-mid mb-5"></h5>
+		            <p class="color-muted mb-30 font-15">
+		            	可根据商品名进行搜索或查看全部分类<br>
+		        		寻找自己喜欢的商品                               		
+		            </p>
+		        </div>
+		    </div>		
+		</script>		
+	</body>
+
+</html>

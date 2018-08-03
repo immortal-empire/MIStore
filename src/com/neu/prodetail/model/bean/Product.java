@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Product {
 	private Integer proId;
-	private Integer comttyId;
+	private CommodityTwoType twoType;
 	private String proName;
 	private String color;
 	private String configuration;
@@ -14,6 +14,8 @@ public class Product {
 	private String proDescriptive;
 	private Date addtime;
 	private String state;
+	private int volume;//销量，临时查询需要
+	private int isFavor;//在搜索时，判断该商品是否是用户的收藏品
 	
 	public Integer getProId() {
 		return proId;
@@ -21,11 +23,12 @@ public class Product {
 	public void setProId(Integer proId) {
 		this.proId = proId;
 	}
-	public Integer getComttyId() {
-		return comttyId;
+
+	public CommodityTwoType getTwoType() {
+		return twoType;
 	}
-	public void setComttyId(Integer comttyId) {
-		this.comttyId = comttyId;
+	public void setTwoType(CommodityTwoType twoType) {
+		this.twoType = twoType;
 	}
 	public String getProName() {
 		return proName;
@@ -81,5 +84,27 @@ public class Product {
 	public void setState(String state) {
 		this.state = state;
 	}
+	public int getVolume() {
+		return volume;
+	}
+	public void setVolume(int volume) {
+		this.volume = volume;
+	}	
+	public int getisFavor() {
+		return isFavor;
+	}
+	public void setFavor(int isFavor) {
+		this.isFavor = isFavor;
+	}
 	
+	@Override
+	public String toString() {
+		return "Product [proId=" + proId + ", twoType=" + twoType
+				+ ", proName=" + proName + ", color=" + color
+				+ ", configuration=" + configuration + ", picture=" + picture
+				+ ", inventory=" + inventory + ", sellingPrice=" + sellingPrice
+				+ ", proDescriptive=" + proDescriptive + ", addtime=" + addtime
+				+ ", state=" + state + ", volume=" + volume + ", isFavor="
+				+ isFavor + "]";
+	}	
 }

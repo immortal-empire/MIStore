@@ -3,5 +3,170 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.neu.prodetail.model.dao.ProductDAO" >
-	   
+      <select id="getProductsByFirstCategory" parameterType="int" resultMap="productsIndex">
+		select * from 
+		product p NATURAL JOIN 
+		(select * from commoditytwotype_info where comtyId=#{firstCategory}) as t 
+		where state=1
+		GROUP BY comttyId
+		ORDER BY sellingPrice ASC
+    </select>
+       
+    <select id="getFirstCategory" resultType="CommodityOneType">
+		select * from commodityonetype_info where state=1
+    </select>
+    
+    <select id="getHotCommSecondCategoryId" resultType="int">
+		select comttyId from comments c,product p
+		WHERE c.proId=p.proId
+		GROUP BY comttyId
+		ORDER BY count(*)  DESC
+		LIMIT 4
+    </select>
+    
+    <select id="getCommentsBySecCateId" parameterType="int" resultMap="getComments">
+		select * 
+		from comments c,product p,customer u,commoditytwotype_info t
+		where c.proId=p.proId and p.comttyId=#{categoryId} and c.cid=u.id and p.comttyId=t.comttyId
+		GROUP BY p.comttyId 
+		ORDER BY rank DESC  
+    </select>
+    
+    <select id="getDisplayProducts" parameterType="int" resultMap="productsIndex">
+        select * from product where comttyId in
+		(select comttyId from commoditytwotype_info where comtyId=#{comtyId})
+		GROUP BY proName
+		ORDER BY addtime DESC
+		LIMIT 8
+    </select>
+    
+    <select id="getBestSelling" parameterType="int" resultMap="bestSellingProduct">
+        select * from product p,
+		(select productId,SUM(quantity) as volume 
+		from orderitem GROUP BY productId) t
+		where p.proId=t.productId
+		ORDER BY t.volume DESC
+		LIMIT #{limit}
+    </select>
+    
+    <select id="getSearchResult" parameterType="map" resultMap="productsSearch">
+		select * from product NATURAL JOIN commodityonetype_info NATURAL JOIN commoditytwotype_info		
+		<where>
+		    <if test="1==1">
+		        and state=1
+		    </if>
+		    <if test="K_keyword!=null and K_keyword!=''">
+		        and (proName like "%"#{K_keyword}"%" or proDescriptive like "%"#{K_keyword}"%" or comtyName like "%"#{K_keyword}"%")
+		    </if>
+		    <if test="K_proType!=null and K_proType!=-1">
+		        and comtyId=#{K_proType}
+		    </if>
+   		    <if test="K_isAvailable!=null and K_isAvailable==1">
+		        and inventory>0
+		    </if>
+		</where>
+    </select>
+       
+    <select id="getFavorProIds" parameterType="int" resultType="Integer">
+        select proid from favor WHERE status=1 AND cid=#{userid}
+    </select>
+    
+    <select id="getFavorsByUserId" parameterType="int" resultMap="productsIndex">
+		select p.* from favor f,product p
+		where f.proid=p.proId and f.status=1 and p.state=1 and cid=1
+    </select>
+    
+    <resultMap type="Product" id="productsSearch">
+        <result column="proId" property="proId" />
+        <result column="proName" property="proName" />
+        <result column="color" property="color" />
+        <result column="configuration" property="configuration" />
+        <result column="picture" property="picture" />
+        <result column="inventory" property="inventory" />
+        <result column="sellingPrice" property="sellingPrice" />
+        <result column="proDescriptive" property="proDescriptive" />
+        <result column="addtime" property="addtime" />
+        <result column="state" property="state" />
+        <association property="twoType" column="comttyId"
+           javaType="CommodityTwoType" resultMap="twoType" />
+        <association property="volume" column="proId" 
+            javaType="int" select="getVolume" />
+    </resultMap>
+    
+    <select id="getVolume" parameterType="int" resultType="int">
+		select SUM(quantity) as volume 
+		from orderitem 
+		WHERE productId=#{proId}
+		GROUP BY productId  
+    </select>
+    
+    <resultMap type="Product" id="productsIndex">
+        <result column="proId" property="proId" />
+        <result column="proName" property="proName" />
+        <result column="color" property="color" />
+        <result column="configuration" property="configuration" />
+        <result column="picture" property="picture" />
+        <result column="inventory" property="inventory" />
+        <result column="sellingPrice" property="sellingPrice" />
+        <result column="proDescriptive" property="proDescriptive" />
+        <result column="addtime" property="addtime" />
+        <result column="state" property="state" />
+        <association property="twoType" column="comttyId"
+           javaType="CommodityTwoType" resultMap="twoType" />
+    </resultMap>
+      
+    <resultMap type="Product" id="bestSellingProduct">
+        <result column="proId" property="proId" />
+        <result column="proName" property="proName" />
+        <result column="color" property="color" />
+        <result column="configuration" property="configuration" />
+        <result column="picture" property="picture" />
+        <result column="inventory" property="inventory" />
+        <result column="sellingPrice" property="sellingPrice" />
+        <result column="proDescriptive" property="proDescriptive" />
+        <result column="addtime" property="addtime" />
+        <result column="state" property="state" />
+        <result column="volume" property="volume" />
+        <association property="twoType" column="comttyId"
+           javaType="CommodityTwoType" resultMap="twoType" />
+    </resultMap>
+    
+   	<resultMap type="CommodityTwoType" id="twoType">
+        <result column="comttyId" property="comttyId" />
+        <result column="comttyName" property="comttyName" />
+        <result column="state" property="state" />
+		<result column="comtyId" property="comtyId" />
+    </resultMap>
+    
+    <resultMap type="Comments" id="getComments">
+        <result column="commId" property="commId" />
+		<result column="cid" property="cid" />
+        <result column="cName" property="cName" />
+		<result column="orderid" property="orderid" />
+        <result column="rank" property="rank" />
+		<result column="comment" property="comment" />
+        <result column="commdate" property="commdate" />
+		<result column="commurl" property="commurl" />
+       	<association property="product" column="proId"
+           javaType="Product" resultMap="productsIndex" />				       
+    </resultMap>
+    
+    <select id="getHistoryFavorProIds" parameterType="int" resultType="Integer">
+        select proid from favor WHERE status=0 AND cid=#{userid}
+    </select>
+    
+    <insert id="addNewFavor" parameterType="map">
+	     <selectKey keyProperty="id" resultType="int" order="BEFORE">
+	         select ifnull(max(id),0)+1 from favor
+	     </selectKey>
+	     insert into favor values(#{id},#{K_userid},#{K_proid},1)                
+    </insert>
+       
+    <update id="updateFavor" parameterType="map">
+        	update favor set status=1 where cid=#{K_userid} and proid=#{K_proid}
+    </update>
+    
+    <update id="removeFromFavor" parameterType="map">
+        	update favor set status=0 where cid=#{K_userid} and proid=#{K_proid}
+    </update>
 </mapper>

@@ -1,0 +1,15 @@
+.pop{
+	background: #fff;
+	display: none;
+	z-index: 95;	
+	position:absolute;	
+	box-shadow: 2px 3px 5px #ccc; 
+	border-top: 1px solid #ccc;
+	}   
+.pop{
+	left:96%;	
+	top:0%;	
+	width: 300%;
+	height:100%;
+	padding: 15px 20px;
+}   
