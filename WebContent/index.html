@@ -46,7 +46,7 @@
                                         	<i class="fa fa-bars"></i>全部分类</a>       
                                         </li>
                                         <li>
-                                        	<a href="#"><i class="fa fa-phone"></i>手机 电话卡
+                                        	<a href="category_detail.html?comtyId=1"><i class="fa fa-phone"></i>手机 电话卡
                                         	<input type="hidden" value="1">
                                         	</a>
                                         	<div class="pop">
@@ -54,7 +54,7 @@
                                         	</div>
                                         </li>
                                         <li>
-                                        	<a href="#"><i class="fa fa-television"></i>电视 盒子
+                                        	<a href="category_detail.html?comtyId=2"><i class="fa fa-television"></i>电视 盒子
                             	            <input type="hidden" value="2">
                                         	</a>
                                         	<div class="pop">
@@ -62,7 +62,7 @@
                                         	</div>                                        
                                         </li>
                                         <li>
-                                        	<a href="#"><i class="fa fa-desktop"></i>笔记本 平板
+                                        	<a href="category_detail.html?comtyId=3"><i class="fa fa-desktop"></i>笔记本 平板
                                         	<input type="hidden" value="3">                                        	
                                         	</a>
                                         	<div class="pop">
@@ -70,7 +70,7 @@
                                         	</div>                                        
                                         </li>
                                         <li>
-                                        	<a href="#"><i class="fa fa-bolt"></i>智能 家电
+                                        	<a href="category_detail.html?comtyId=4"><i class="fa fa-bolt"></i>智能 家电
                                         	<input type="hidden" value="4">                                        	
                                         	</a>
                                         	<div class="pop">
@@ -78,7 +78,7 @@
                                         	</div>                                        
                                         </li>
                                         <li>
-                                        	<a href="#"><i class="fa fa-heartbeat"></i>健康 家居
+                                        	<a href="category_detail.html?comtyId=5"><i class="fa fa-heartbeat"></i>健康 家居
                                         	<input type="hidden" value="5">                                        	
                                         	</a>
                                         	<div class="pop">
@@ -237,7 +237,7 @@
 	    <section class="section latest-coupons-area ptb-30" id="${$item.getSectionName()}">
 		    <header class="panel ptb-15 prl-20 pos-r mb-30">
 		        <h3 class="section-title font-18">${$item.getSectionName()}</h3>
-		        <a class="btn btn-o btn-xs pos-a right-10 pos-tb-center">查看更多</a>              
+		        <a href="category_detail.html?comtyId=${$item.getSectionId()}" class="btn btn-o btn-xs pos-a right-10 pos-tb-center">查看更多</a>              
 		    </header>			
 		    <div class="row row-masnory row-tb-20">		    		                                    
 		    </div>	
@@ -274,7 +274,7 @@
 	</script>
 	<script id="recommendItem" type="text/x-jquery-tmpl">
 		<div class="store-item t-center item">
-		    <a href="store_single_01.html" class="panel is-block">
+		    <a href="addShoppingCart.html?comttyId=${comttyId}" class="panel is-block">
 		        <div class="embed-responsive embed-responsive-4by3">
 		            <div class="store-logo">
 		                <img src="assets/images/cart/product_11.jpg" alt="">

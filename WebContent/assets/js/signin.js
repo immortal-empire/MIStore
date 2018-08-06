@@ -3,10 +3,10 @@ $(document).ready(function(){
 	{
 	    // 是的! 支持 localStorage  sessionStorage 对象!
 	    // 一些代码.....
-	    alert("支持");
+	    console.log("支持");
 	   	window.localStorage.setItem("products","");
 	} else {
-		alert("抱歉! 不支持 web 存储");
+		console.log("抱歉! 不支持 web 存储");
 	    // 抱歉! 不支持 web 存储。
 	}
 });
@@ -15,7 +15,7 @@ var Ifname=0;
 var Ifpassword=0;
 $("#username").blur(function(){
 	var name=$("#username").val();
-	//alert(name);
+	//console.log(name);
 	if(name.length == 0) {
 		$("#username").addClass('input-blur');
 		$("#username").val("请输入用户名或手机号");
@@ -26,7 +26,7 @@ $("#username").blur(function(){
 });
 
 $("#username").focus(function(){
-	//alert("haha");
+	//console.log("haha");
 	Ifname=0;
 	$("#username").removeClass('input-blur');
 	$("#message").css("display","none");
@@ -37,10 +37,10 @@ $("#username").focus(function(){
 
 $("#password").blur(function(){
 	var password=$(this).val();
-	//alert(name);
+	//console.log(name);
 	var regPwd = /^[a-zA-Z]\w{3,7}$/;
 	if(regPwd.test(password)) {		
-		//alert(password);
+		//console.log(password);
 		Ifpassword = 1;
 		//Ifname=0;
 	}else {
@@ -51,7 +51,7 @@ $("#password").blur(function(){
 });
 
 $("#password").focus(function(){
-	//alert("haha");
+	//console.log("haha");
 	$("#password").removeClass('input-blur');
 	$("#message").css("display","none");
 	
@@ -64,11 +64,11 @@ $("#login").click(function(){
 	var name=$("#username").val();
 	var password=$("#password").val(); 
 	if($("#remember_account").prop('checked')) {
-		alert("记住用户名密码");		
+		//console.log("记住用户名密码");		
 	}
 	//location.href="addShoppingCart.html?"+"comttyId="+1;
 	if(Ifname ==1 && Ifpassword ==1) {
-		//alert("符合条件，可发起请求");
+		//console.log("符合条件，可发起请求");
 		
 		$.ajax({
 			type:"post",
@@ -82,29 +82,30 @@ $("#login").click(function(){
 			success:function(data)
 			{
 				console.log(data);
-				//alert(data.cname);
+				//console.log(data.cname);
 				window.localStorage.setItem("user",JSON.stringify(data));
 				var user = window.localStorage.getItem("user");
 				console.log(user);
 	            console.log(typeof window.localStorage["user"]);
 	            //updateCart(data.id);
 	            var old = window.localStorage.getItem("products");
-	            alert(old);
+//	            console.log(old);
 				if( old== null || old.length == 0) {
 					getProductInCart(data.id);
 					console.log("LocalStorage中没有商品,从数据库中读取");
 				}else {
-					alert("LocalStorage中有商品, 更新数据库");
+					console.log("LocalStorage中有商品, 更新数据库");
 					updateCart(data.id,JSON.parse(old));
 				}
 				//location.href="addShoppingCart.html?"+"comttyId="+1;
+				window.history.back();
 			},
 //	        error : function(XMLHttpRequest, textStatus, errorThrown) {
 //	        	//这个error函数调试时非常有用，如果解析不正确，将会弹出错误框
-//	        	alert(XMLHttpRequest.responseText); 
-//	        	alert(XMLHttpRequest.status);
-//	        	alert(XMLHttpRequest.readyState);
-//	        	alert(textStatus); // parser error;
+//	        	console.log(XMLHttpRequest.responseText); 
+//	        	console.log(XMLHttpRequest.status);
+//	        	console.log(XMLHttpRequest.readyState);
+//	        	console.log(textStatus); // parser error;
 //      	}
 		});	
 		//location.href="signupDetail.html?"+"phone="+phone;
@@ -121,7 +122,7 @@ function getProductInCart(cid){
 		url:"getProductInCart/"+cid,
 		async:true,
 		success:function(data){
-			//alert("haha");
+			//console.log("haha");
 			console.log(data);
 			window.localStorage.setItem("products",JSON.stringify(data));
 			console.log(window.localStorage.getItem("products"));
@@ -143,17 +144,17 @@ function updateCart(cid,old) {
 			console.log("更新后localStorage");
 			window.localStorage.setItem("products",JSON.stringify(data));
 			console.log(window.localStorage.getItem("products"));			
-			//alert(data.cname);
+			//console.log(data.cname);
 			//window.localStorage.setItem("user",JSON.stringify(data));
             //console.log(typeof window.localStorage["user"]);
             //getProductInCart(data.id);
 		},
         error : function(XMLHttpRequest, textStatus, errorThrown) {
         	//这个error函数调试时非常有用，如果解析不正确，将会弹出错误框
-        	alert(XMLHttpRequest.responseText); 
-        	alert(XMLHttpRequest.status);
-        	alert(XMLHttpRequest.readyState);
-        	alert(textStatus); // parser error;
+        	console.log(XMLHttpRequest.responseText); 
+        	console.log(XMLHttpRequest.status);
+        	console.log(XMLHttpRequest.readyState);
+        	console.log(textStatus); // parser error;
     	}
 	});	
 }

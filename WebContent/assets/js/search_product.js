@@ -44,7 +44,7 @@ var search_result = function() {
 					$("#resultDisplay").html("");
 					products = data;
 					console.log(JSON.stringify(data));
-
+					
 					//结果中包含有信息，则进行展示
 					if (data.length > 0) {
 						pagination(data, data.length);
@@ -222,5 +222,5 @@ var sortByVolumeAsc = function(x, y) {
 	};
 
 var sortLatest = function(x, y) {
-		return y.addtime - x.addtime;
+		return Date.parse(y.addtime) - Date.parse(x.addtime);
 	};

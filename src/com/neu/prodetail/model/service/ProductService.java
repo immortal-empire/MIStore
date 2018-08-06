@@ -225,7 +225,7 @@ public class ProductService {
 			List<Integer> favors = productDAO.getFavorProIds(userid);
 			for(Product p:list){
 				if(favors.contains(p.getProId())){
-					p.setFavor(1);
+					p.setIsFavor(1);
 				}
 			}
 		}

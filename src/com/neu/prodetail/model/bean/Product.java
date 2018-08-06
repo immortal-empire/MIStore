@@ -94,10 +94,10 @@ public class Product {
 	public void setVolume(int volume) {
 		this.volume = volume;
 	}	
-	public int getisFavor() {
+	public int getIsFavor() {
 		return isFavor;
-	}
-	public void setFavor(int isFavor) {
+	}	
+	public void setIsFavor(int isFavor) {
 		this.isFavor = isFavor;
 	}
 	public Integer getComttyId() {
@@ -105,12 +105,5 @@ public class Product {
 	}
 	public void setComttyId(Integer comttyId) {
 		this.comttyId = comttyId;
-	}
-	public int getIsFavor() {
-		return isFavor;
-	}
-	public void setIsFavor(int isFavor) {
-		this.isFavor = isFavor;
-	}
-	
+	}	
 }

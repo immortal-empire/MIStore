@@ -139,18 +139,20 @@
 			<tr class="panel alert">
 				<td class="col-sm-8 col-md-9">
 					<div class="media-left is-hidden-sm-down">
-						<figure class="product-thumb">
-							<img src="assets/images/cart/product_11.jpg" alt="product">
-						</figure>
+						<a href="addShoppingCart.html?comttyId=${comttyId}">
+							<figure class="product-thumb">
+								<img src="assets/images/cart/product_11.jpg" alt="product">
+							</figure>
+						</a>
 					</div>
 					<div class="media-body valign-middle">
 						<input type="hidden" value="${proId}">		
-						<h5 class="title mb-5 t-uppercase"><a href="#">${proName}&nbsp;&nbsp;${color}&nbsp;&nbsp;${configuration}</a></h5>					
+						<h5 class="title mb-5 t-uppercase"><a href="addShoppingCart.html?comttyId=${comttyId}">${proName}&nbsp;&nbsp;${color}&nbsp;&nbsp;${configuration}</a></h5>					
 						<h4 class="price" style="color: orangered;">￥${sellingPrice}</h4>			
 					</div>
 				</td>
 				<td class="col-sm-3 col-md-2 is-hidden-xs-down">
-					<button class="btn btn-rounded btn-sm">查看详情</button>
+					<a href="addShoppingCart.html?comttyId=${comttyId}"><button class="btn btn-rounded btn-sm">查看详情</button></a>
 				</td>
 				<td class="col-sm-1">
 					<button type="button" class="close pr-xs-0 pr-sm-10" data-dismiss="alert" aria-hidden="true">

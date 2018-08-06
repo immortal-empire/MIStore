@@ -73,7 +73,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <select id="getFavorsByUserId" parameterType="int" resultMap="productsIndex">
 		select p.* from favor f,product p
-		where f.proid=p.proId and f.status=1 and p.state=1 and cid=1
+		where f.proid=p.proId and f.status=1 and p.state=1 and cid=#{userid}
     </select>
     
     <resultMap type="Product" id="productsSearch">
@@ -87,8 +87,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="proDescriptive" property="proDescriptive" />
         <result column="addtime" property="addtime" />
         <result column="state" property="state" />
+        <result column="comttyId" property="comttyId" />          
         <association property="twoType" column="comttyId"
-           javaType="CommodityTwoType" resultMap="twoType" />
+           javaType="CommodityTwoType" select="twoType" />
         <association property="volume" column="proId" 
             javaType="int" select="getVolume" />
     </resultMap>
@@ -111,8 +112,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="proDescriptive" property="proDescriptive" />
         <result column="addtime" property="addtime" />
         <result column="state" property="state" />
+        <result column="comttyId" property="comttyId" />       
         <association property="twoType" column="comttyId"
-           javaType="CommodityTwoType" resultMap="twoType" />
+           javaType="CommodityTwoType" select="twoType" />
     </resultMap>
       
     <resultMap type="Product" id="bestSellingProduct">
@@ -128,15 +130,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="state" property="state" />
         <result column="volume" property="volume" />
         <association property="twoType" column="comttyId"
-           javaType="CommodityTwoType" resultMap="twoType" />
+           javaType="CommodityTwoType" select="twoType" />
     </resultMap>
     
-   	<resultMap type="CommodityTwoType" id="twoType">
-        <result column="comttyId" property="comttyId" />
-        <result column="comttyName" property="comttyName" />
-        <result column="state" property="state" />
-		<result column="comtyId" property="comtyId" />
-    </resultMap>
+   	<select id="twoType" resultType="CommodityTwoType" parameterType="int">
+		select* from commoditytwotype_info where comttyId=#{comttyId}
+    </select>
     
     <resultMap type="Comments" id="getComments">
         <result column="commId" property="commId" />

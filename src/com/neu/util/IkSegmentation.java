@@ -52,10 +52,10 @@ public class IkSegmentation {
  
 	@SuppressWarnings("static-access")
 	public static void main(String[] args) throws IOException {
-		List<String> words = IkSegmentation.Seg("小米手机的小米8");
-		System.out.println("分词结果为：");
+		List<String> words = IkSegmentation.Seg("AI双摄小米手机、小米8");
+		System.out.print("分词结果为：");
 		for(String s:words){
-			System.out.println(s);				
+			System.out.print(s+" | ");				
 		}
 	}
 }

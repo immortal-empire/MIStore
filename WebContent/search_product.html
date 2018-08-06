@@ -145,22 +145,23 @@
     <script id="resultItem" type="text/x-jquery-tmpl">
 	    <div class="col-sm-4 col-md-3 col-lg-3">
 		    <div class="coupon-single panel t-center">
-
 		        <div class="row">
 		            <div class="col-xs-12">
 		                <div class="text-center p-20">
-		                    <img class="store-logo" src="assets/images/coupons/coupon_01.jpg" alt="">
+							<a href="addShoppingCart.html?comttyId=${comttyId}">
+		                    	<img class="store-logo" src="assets/images/coupons/coupon_01.jpg" alt="">
+							</a>
 		                </div>
 		            </div>
 					<input type="hidden" value="${proId}">
 		            <div class="col-xs-12">
 		                <div class="panel-body">
 		                    <h5 class="deal-title mb-10">
-		                        <a href="#" title="总销量 ${volume}件">${proName}&nbsp;&nbsp;&nbsp;${configuration}</a>
+		                        <a href="addShoppingCart.html?comttyId=${comttyId}" title="总销量 ${volume}件">${proName}&nbsp;&nbsp;&nbsp;${configuration}</a>
 		                    </h5>
 	               			 <div class="entry-meta mb-10">
 	                    		<ul class="tag-info list-inline" style="font-size:10px;">
-	                        		<li> ${proDescriptive}</li>                     
+	                        		<li><a href="addShoppingCart.html?comttyId=${comttyId}">${proDescriptive}</a></li>                     
 	                    		</ul>
 	                		</div>
 		                    <h4 class="mb-10 t-uppercase" style="color: orangered;">${sellingPrice}元</h4>

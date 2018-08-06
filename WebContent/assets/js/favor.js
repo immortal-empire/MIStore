@@ -46,6 +46,7 @@ var getFavorItems = function() {
 					"userid": userid
 				},
 				success: function(data) {
+					console.log(JSON.stringify(data));					
 					$("#favorlist").html("");
 					favors = data;
 

@@ -40,21 +40,21 @@ var categories = function() {
 			success: function(data) {
 				$.each(data, function(item) {
 					if (data[item].length > 0) {
-
 						//1、针对每个分类名，首先先生成工具条
 						$("#category").tmpl(null, {
 							getCategoryName: function() {
 								return item;
 							}
 						}).appendTo("#wrapContainer");
-
 						//2、获得新生成的工具条
 						var section = $("#" + item).find(".t-center");
-
 						//3、对工具条下的div，动态添加商品数据
 						$("#products").tmpl(data[item], {
 							getProName: function() {
 								return this.data.twoType.comttyName;
+							},
+							getComttyId:function(){
+								return this.data.twoType.comttyId;
 							}
 						}).appendTo(section);
 					}
