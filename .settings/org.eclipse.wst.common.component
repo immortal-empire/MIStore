@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="XiaoMiStore">
+    <wb-module deploy-name="MIStore">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="XiaoMiStore"/>
-        <property name="java-output-path" value="/XiaoMiStore/build/classes"/>
+        <property name="java-output-path" value="/MIStore/build/classes"/>
+        <property name="context-root" value="MIStore"/>
     </wb-module>
 </project-modules>

@@ -29,10 +29,10 @@
     <!-- <bean name="/login.action" class="springmvc.controller.LoginController"/> -->
     <!-- <bean id="/login" class="springmvc.controller.LoginController"/> -->
 	<!-- 组件扫描的形式管理所有控制器 -->
-	<context:component-scan base-package="com.neu.controller"></context:component-scan>
+	<context:component-scan base-package="com.neu.cart.controller"></context:component-scan>
 
 	<!-- 组件扫描的形式管理所有的service -->
-   	<context:component-scan base-package="com.neu.model.service"></context:component-scan>
+   	<context:component-scan base-package="com.neu.cart.model.service"></context:component-scan>
 
    	<!-- 配置service不需要实现接口 -->
    	<aop:aspectj-autoproxy proxy-target-class="true"/>

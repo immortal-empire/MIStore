@@ -32,7 +32,7 @@
    </tx:advice>
    
    <aop:config>
-       <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.neu.model.service.*.*(..))"/>
+       <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.neu.cart.model.service.*.*(..))"/>
    </aop:config>
    
 
