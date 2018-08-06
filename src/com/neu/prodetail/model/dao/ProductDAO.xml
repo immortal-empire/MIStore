@@ -45,6 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(select productId,SUM(quantity) as volume 
 		from orderitem GROUP BY productId) t
 		where p.proId=t.productId
+		GROUP BY comttyId
 		ORDER BY t.volume DESC
 		LIMIT #{limit}
     </select>
