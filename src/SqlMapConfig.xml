@@ -14,6 +14,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		 <package name="com.neu.model.bean"/>
 		 <package name="com.neu.util.model.bean"/>
 		 <package name="com.neu.prodetail.model.bean"/>
+		 <package name="com.neu.bai.model.bean" />
+		 <package name="com.neu.order.model.bean"/>
+		 
+		 <package name="com.neu.cart.model.bean"/>
+		 <package name="com.neu.groupbuy.model.bean"/>
+		 <package name="com.neu.seckill.model.bean" />
      </typeAliases>
      
 	

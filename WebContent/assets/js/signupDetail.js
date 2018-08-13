@@ -99,6 +99,7 @@ $("#register").click(function(){
 			{
 				if(data.result) {
 					alert("注册成功！");
+					location.href="index.html";
 				}else {
 					alert("注册失败！");
 				}

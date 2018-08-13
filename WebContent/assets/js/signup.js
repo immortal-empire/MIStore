@@ -80,7 +80,7 @@ $("#getCode").click(function(){
 			}
 		}
 	});
-	alert(msg);
+	//alert(msg);
 	$(this).unbind('click');
 	settime();
 	
@@ -95,7 +95,7 @@ function settime() {
     	clearTimeout(myVar);
     	$("#getCode").bind('click',function(){
 			var msg = $("#getCode").text();
-			alert(msg);
+			//alert(msg);
 			var phone=$("#phoneNum").val();
 			$.ajax({
 				type:"post",

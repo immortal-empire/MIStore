@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neu.groupbuy.model.dao.GroupOrderDAO">
+	
+	<!-- 根据团Id查询团购商品 -->
+	<select id="selectGroupPurchaseByGroupId" parameterType="int" resultMap="GroupResult">
+		select * from groups g
+		join grouppurchase_info gp
+		on g.groupPurId=gp.groId
+		join product p
+		on p.proId=gp.proId
+		where g.id=#{groupId}
+	</select>
+	<resultMap type="Group" id="GroupResult">
+		<result property="id" column="id"/>
+		<result property="groupPurId" column="groupPurId"/>
+		<result property="state" column="state"/>
+		<result property="startTime" column="startTime"/>
+		<result property="endTime" column="endTime"/>
+		<association property="groupPurchase" column="id"
+		javaType="GroupPurchase" resultMap="groupPurchaseResult" />
+	</resultMap>
+	<resultMap type="GroupPurchase" id="groupPurchaseResult">
+		<result property="groid" column="groid"/>
+		<result property="proid" column="proid"/>
+		<result property="groupPrice" column="groupPrice"/>
+		<result property="gMinimumSum" column="gMinimumSum"/>
+		<result property="gStartTime" column="gStartTime"/>
+		<result property="gEndTime" column="gEndTime"/>
+		<result property="gResidueSum" column="gResidueSum"/>
+		<result property="gState" column="gState"/>
+		<association property="product" column="proId" 
+		   	javaType="Product" resultMap="productResult" />
+	</resultMap>
+	<resultMap type="Product" id="productResult">
+		<result column="proId" property="proId"/>
+		<result column="comttyId" property="comttyId"/>
+		<result column="proName" property="proName"/>
+		<result column="color" property="color"/>
+		<result column="configuration" property="configuration"/>
+		<result column="picture" property="picture"/>
+		<result column="inventory" property="inventory"/>
+		<result column="sellingPrice" property="sellingPrice"/>
+		<result column="proDescriptive" property="proDescriptive"/>
+		<result column="addtime" property="addtime"/>
+		<result column="state" property="state"/>
+	</resultMap>
+	
+<!-- 下单模块 -->
+	<!-- 下单  -->
+	<insert id="createGroupOrder" parameterType="GroupOrder" useGeneratedKeys="true" keyProperty="id">
+		insert into grouporder(customerId,groupId,addressId,quantity,account,distributionMode,distributionTime,InvoiceType,isPay,state,startTime)
+		values(#{customerId},#{groupId},#{addressId},#{quantity},#{account},"快递",#{distributionTime},#{invoiceType},'0','0',NOW())
+	</insert>
+	
+	<!-- 查询该团人数 -->
+	<select id="selectCountOfGroup" parameterType="int" resultType="int">
+		select count(*) cc from grouporder
+		where groupId=#{groupId}
+	</select>
+	
+	<!-- 查询该团所在的团购商品Id -->
+	<select id="GroupPurchaseIdByGroupId" parameterType="int" resultType="Group">
+		select * from groups
+		where id=#{groupId}
+	</select>
+	
+	<!-- 查询该团购商品最低拼团人数 -->
+	<select id="selectCountLimitGroupPurchase" parameterType="int" resultType="GroupPurchase">
+		select * from grouppurchase_info
+		where groId = #{groupPurchaseId}
+	</select>
+	
+	<!-- 更改团状态 -->
+	<update id="updateGroupState" parameterType="int" >
+		update  groups 
+		set state = '2'
+		where id=#{groupId}
+	</update>
+	
+	<!-- 更新库存 -->
+	<update id="updataGroupPurchaseResidueSum" parameterType="map">
+		update grouppurchase_info
+		set gResidueSum = (gResidueSum - #{K_quantity})
+		where groId = #{K_groupPurchaseId}
+	</update>
+	
+	<!-- 更新订单状态 -->
+	  
+	<update id="updateGroupOrderState" parameterType="int">
+		update grouporder set state='2' , sendGoodsTime = NOW()
+		where groupId = #{groupId}
+	</update>
+	
+	
+	<!-- 查询团购订单或者所有有效定单 -->
+	<select id="getGroupOrder" parameterType="int" resultType="GroupOrder">
+		select * from grouporder 
+		where customerId=#{customerId} and state != '7' 
+		order by id desc
+	</select>
+	
+	<!-- 查询未支付团购订单 -->
+	<select id="getNotPayGroupOrder" parameterType="int" resultType="GroupOrder">
+		select * from grouporder
+		where customerId=#{customerId} and state = '0'
+		order by id desc
+	</select>
+	
+	<!-- 查询待收货订单 -->
+	<select id="getReceivingGroupOrder" parameterType="int" resultType="GroupOrder">
+		select * from grouporder 
+		where customerId=#{customerId}
+		and (state='2' or state='3')
+		order by id desc
+	</select>
+	
+	<!-- 查询已关闭团购订单 -->
+	<select id="getClosedGroupOrder" parameterType="int" resultType="GroupOrder">
+		select * from grouporder 
+		where customerId=#{customerId}
+		and state='7'
+		order by id desc
+	</select>
+	
+	<!-- 根据团购订单Id查询订单详情 -->
+	<select id="selectGroupOrderDetailById" parameterType="int" resultType="GroupOrder">
+		select * from grouporder 
+		where  id = #{groupOrderId}
+	</select>
+	
+<!-- 在查询所有有效订单、待支付订单、待收货订单、已关闭订单、订单详情中复用 -->
+	<!-- 根据团购订单Id查询地址信息 -->
+	<select id="getAddress" parameterType="int" resultType="GroupAddress">
+		select * from address
+		where addressnum = #{groupOrderAddressId}
+	</select>
+	<!-- 根据团购订单中的团Id查询团 -->
+	<select id="getGroup" parameterType="int" resultType="Group">
+		select * from groups
+		where id=#{groupId}
+	</select>
+	<!-- 根据团中的团购商品Id查询团购商品 -->
+	<select id="getGroupPurchase" parameterType="int" resultType="GroupPurchase">
+		select * from grouppurchase_info
+		where groId=#{groupPurchaseId}
+	</select>
+	<!-- 根据团购商品Id查询商品信息 -->
+	<select id="getProduct" parameterType="int" resultType="Product">
+		select * from product
+		where proId = #{productId}
+	</select>
+	
+	<!-- 输入框查询 -->
+	<select id="selectGroupOrderByInput" parameterType="map" resultMap="GroupOrderResult">
+		select * from grouporder go
+		join groups g
+		on go.groupId=g.id
+		join grouppurchase_info gp
+		on g.groupPurId=gp.groId
+		join product p
+		on gp.proId = p.proId
+		where go.customerId=#{K_customerId} and (go.id=#{K_result} or p.proName like '%' #{K_result} '%')
+		
+	</select>
+	<resultMap type="GroupOrder" id="GroupOrderResult">
+		<result property="id" column="id"/>
+		<result property="customerId" column="customerId"/>
+		<result property="groupId" column="groupId"/>
+		<result property="addressId" column="addressId"/>
+		<result property="quantity" column="quantity"/>
+		<result property="account" column="account"/>
+		<result property="distributionMode" column="distributionMode"/>
+		<result property="distributionTime" column="distributionTime"/>
+		<result property="payment" column="payment"/>
+		<result property="isPay" column="isPay"/>
+		<result property="state" column="state"/>
+		<result property="startTime" column="startTime"/>
+		<result property="payTime" column="payTime"/>
+		<result property="refundTime" column="refundTime"/>
+		<result property="sendGoodsTime" column="sendGoodsTime"/>
+		<result property="closeTime" column="closeTime"/>
+		<result property="endTime" column="endTime"/>
+		<association property="group" column="id"
+			javaType="Group" resultMap="GroupResultInput"/>
+	</resultMap>
+	<resultMap type="Group" id="GroupResultInput">
+		<result property="id" column="id"/>
+		<result property="groupPurId" column="groupPurId"/>
+		<result property="state" column="state"/>
+		<result property="startTime" column="startTime"/>
+		<result property="endTime" column="endTime"/>
+		<association property="groupPurchase" column="id"
+			javaType="GroupPurchase" resultMap="groupPurchaseResultInput" />
+	</resultMap>
+	<resultMap type="GroupPurchase" id="groupPurchaseResultInput">
+		<result property="groid" column="groid"/>
+		<result property="proid" column="proid"/>
+		<result property="groupPrice" column="groupPrice"/>
+		<result property="gMinimumSum" column="gMinimumSum"/>
+		<result property="gStartTime" column="gStartTime"/>
+		<result property="gEndTime" column="gEndTime"/>
+		<result property="gResidueSum" column="gResidueSum"/>
+		<result property="gState" column="gState"/>
+		<association property="product" column="proId" 
+		   	javaType="Product" resultMap="productResultInput" />
+	</resultMap>
+	<resultMap type="Product" id="productResultInput">
+		<result column="proId" property="proId"/>
+		<result column="comttyId" property="comttyId"/>
+		<result column="proName" property="proName"/>
+		<result column="color" property="color"/>
+		<result column="configuration" property="configuration"/>
+		<result column="picture" property="picture"/>
+		<result column="inventory" property="inventory"/>
+		<result column="sellingPrice" property="sellingPrice"/>
+		<result column="proDescriptive" property="proDescriptive"/>
+		<result column="addtime" property="addtime"/>
+		<result column="state" property="state"/>
+	</resultMap>
+
+	<!-- 支付订单并更新订单支付状态 -->
+	<update id="updataGroupOrderPayment" parameterType="map">
+		update grouporder
+		set payment = #{K_payment},payTime = NOW(),isPay='1',state = '1'
+		where id = #{K_groupOrderId}
+	</update>
+	<!-- 订单支付操作 -->
+	<update id="updateOrderPayment" parameterType="map">
+		update `order`
+		set payment = #{K_payment},payTime = NOW(),orderStatus = '1'
+		where orderId = #{K_groupOrderId}
+	</update>
+	
+	<!-- 退订 -->
+	<update id="quitGroupOrder" parameterType="int">
+		update grouporder
+		set state='7',closeTime = NOW()
+		where id = #{groupOrderId}
+	</update>
+	
+	<!-- 申请退款 -->
+	<update id="refund" parameterType="int">
+		update grouporder
+		set state = '6',refundTime = NOW()
+		where id=#{groupOrderId}
+	</update>
+	
+	<!-- 确认收货 -->
+	<update id="confirmationOfreceipt" parameterType="int">
+		update grouporder
+		set state = '4',endTime = NOW()
+		where id=#{groupOrderId}
+	</update>
+	
+</mapper>

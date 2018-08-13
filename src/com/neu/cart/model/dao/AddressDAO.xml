@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neu.cart.model.dao.AddressDAO">
+	
+	<!-- 查询用户地址 -->
+	<select id="selectAddress" parameterType="int" resultMap="AddressResult">
+		select * from address where Cid = #{userId} and state = '1'
+	</select>
+	<resultMap type="Address" id="AddressResult">
+		<result column="addressnum" property="addressId"/>
+		<result column="address" property="addressDetail"/>
+		<result column="host" property="consumerName"/>
+		<result column="tele" property="telephone"/>
+	</resultMap>
+
+	<!-- 修改用户地址 -->
+	<update id="updateAddress" parameterType="Address">
+		update address set addressDetail = #{addressDetail},host = #{consumerName},
+			tele = #{telephone},postcode = #{postcode} 
+			where addressnum = #{addressId}
+	</update>
+	
+	<!-- 新增用户地址 -->
+	<insert id="insertAddress" parameterType="Address">
+		<selectKey keyProperty="addressId" resultType="int" order="BEFORE">
+             select IFNULL(max(addressnum),0)+1 from address
+        </selectKey>
+         insert into address
+         values(#{addressId},#{consumerId},#{addressDetail},#{consumerName},#{telephone},#{postcode},'1')
+	</insert>
+</mapper>

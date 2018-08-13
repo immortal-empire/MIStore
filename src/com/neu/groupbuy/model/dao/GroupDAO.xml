@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neu.groupbuy.model.dao.GroupDAO">
+
+	<!-- 查找出所有可以团购的商品 -->
+	<select id="selectGroupPurchaseById" resultMap="groupPurResult" parameterType="int">
+		select * from grouppurchase_info gp, product p
+		where gp.proId = p.proId
+		and gp.gState = '1' and gp.groId=#{groId}
+	</select>
+	<resultMap type="GroupPurchase" id="groupPurResult">
+		<result property="groid" column="groid"/>
+		<result property="proid" column="proid"/>
+		<result property="groupPrice" column="groupPrice"/>
+		<result property="gMinimumSum" column="gMinimumSum"/>
+		<result property="gStartTime" column="gStartTime"/>
+		<result property="gEndTime" column="gEndTime"/>
+		<result property="gResidueSum" column="gResidueSum"/>
+		<result property="gState" column="gState"/>
+		<association property="product" column="proId" 
+		   	javaType="Product" resultMap="productResult" />
+		   	<!-- 如果有多个外键，可以用多个association关联 -->
+	</resultMap>
+	<resultMap type="Product" id="productResult">
+		<result column="proId" property="proId"/>
+		<result column="comttyId" property="comttyId"/>
+		<result column="proName" property="proName"/>
+		<result column="color" property="color"/>
+		<result column="configuration" property="configuration"/>
+		<result column="picture" property="picture"/>
+		<result column="inventory" property="inventory"/>
+		<result column="sellingPrice" property="sellingPrice"/>
+		<result column="proDescriptive" property="proDescriptive"/>
+		<result column="addtime" property="addtime"/>
+		<result column="state" property="state"/>
+	</resultMap>
+	
+	<!-- 自动更新团的信息 -->
+	 <update id="updateGroupStateAuto" parameterType="int">
+		update groups set state='0' where TIME_TO_SEC(TIMEDIFF(now(),endTime)) >0 
+		and state='1' and groupPurId=#{groupPurchaseId}
+	</update> 	
+	<!-- 检测已经失效的团 -->
+	<select id="selectUselessGroup" parameterType="int" resultType="Group">
+		select * from groups
+		where state = '0'
+		and groupPurId=#{groupPurchaseId}
+	</select>
+	<!-- 修改团状态为已退款 -->
+	<update id="updateGroupOrderState" parameterType="int">
+		update grouporder
+		set state = '6'
+		where groupId = #{groupId}
+	</update>
+	<!-- 更新库存 -->
+	<select id="updateGroupPurchaseIntovaty" parameterType="map">
+		update grouppurchase_info
+		set gResidueSum = (gResidueSum + #{K_quantity})
+		where groId=#{K_groupPurchaseId}
+	</select>
+	
+	
+<!-- 搜索有效团和参与团的人 -->
+	 <select id="selectGroup" parameterType="int" resultType="Group">
+	 	select * from groups
+	 	where groupPurId = #{groupPurchaseId}
+	 	and state='1'
+	 </select>	 	 
+	<!-- 搜索团购订单 -->
+	<select id="selectGroupOrderByGroupId" parameterType="int" resultType="GroupOrder">
+		select * from grouporder
+		where groupId=#{groupId}
+	</select>
+	<!-- 通过团订单查询顾客 -->
+	<select id="selectCustomerByGroupOrderId" parameterType="int" resultType="Customer">
+		select * from customer
+		where id = #{customerId}
+	</select>
+	
+	
+	<!-- 查询当前拼团人数 -->
+	<select id="selectNumOfPerson" parameterType="int" resultType="int">
+		select count(*) cc from grouporder
+		where groupId=#{groupId}
+	</select>
+	
+	<!-- 新开团 -->
+	<insert id="createGroup" parameterType="Group" useGeneratedKeys="true" keyProperty="id">
+		insert into groups(groupPurId,state,startTime,endTime)
+		values(#{groupPurId},'1',now(),date_sub(now(),interval -1 day))
+	</insert> 
+	
+			
+	
+</mapper>

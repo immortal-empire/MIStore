@@ -20,6 +20,9 @@ public class CartProductInfo {
 	private String proName;
 	private String picture;
 	private Integer inventory;
+	private String color;
+	private String configuration;
+	
 	
 	public Integer getId() {
 		return id;
@@ -98,6 +101,18 @@ public class CartProductInfo {
 	}
 	public void setIsChecked(boolean isChecked) {
 		this.isChecked = isChecked;
+	}
+	public String getConfiguration() {
+		return configuration;
+	}
+	public void setConfiguration(String configuration) {
+		this.configuration = configuration;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
 	}
 	
 }

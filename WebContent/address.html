@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>地址管理</title>
+	</head>
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/css/cityLayout.css">
+	<link rel="stylesheet" href="assets/css/order.css" />
+	<link rel="stylesheet" href="assets/css/common.css" />
+	<link rel="stylesheet" href="assets/css/reset.css" />
+	
+	<link href="assets/css/base.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+<body>
+<div id="pageWrapper" class="page-wrapper">
+		
+		<header id="mainHeader" class="main-header">
+
+	    <!-- Top Bar -->
+	    <div class="top-bar bg-gray">
+	        <div class="container">
+	            <div class="row">
+	                <div id="welcome" class="col-sm-12 col-md-4 is-hidden-sm-down">
+	                    <ul class="nav-top nav-top-left list-inline t-left">
+	                        <li>
+	                        	<a id="welcomelink" href="#">
+	                        		<i class="fa fa-home"></i>
+	                        		<div id="welcomeMessage" style="display: inline;">请登录</div>
+	                        	</a>
+	                        </li>
+	                    </ul>
+	                </div>
+	                <div class="col-sm-12 col-md-8">
+	                    <ul class="nav-top nav-top-right list-inline t-xs-center t-md-right">
+	                        <li id="right1">
+	                        	<a href="signin.html">
+	                        		<i class="fa fa-user"></i>
+	                        		<p style="display: inline;">登录</p>
+	                        	</a>
+	                        </li>
+	                        <li id="right2">
+	                        	<a href="signup.html"><i class="fa fa-lock"></i>
+	                        		<p style="display: inline;">注册</p>
+	                        	</a>
+	                        </li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <!-- End Top Bar -->
+	
+	    <!-- Header Menu -->
+	    <div class="header-menu bg-blue">
+	        <div class="container">
+	            <nav class="nav-bar">
+	                <div class="nav-header">
+	                    <span class="nav-toggle" data-toggle="#header-navbar">
+	                        <i></i>
+	                        <i></i>
+	                        <i></i>
+	                    </span>
+	                </div>
+	                <div id="header-navbar" class="nav-collapse">
+	                    <ul class="nav-menu">
+	                        <li class="active">
+	                            <a href="index.html">首页</a>
+	                        </li>
+	                      	<li>
+	                            <a href="all_product_category.html">全部分类</a>
+	                        </li>                        
+	                        <li class="dropdown-mega-menu">
+	                            <a href="category_detail.html?comtyId=1">小米手机</a>
+	                            <input type="hidden" value="1">
+	                            <div class="mega-menu">
+	                                <div class="row row-v-10"></div>
+	                            </div>
+	                        </li>
+	                        
+	                        <li class="dropdown-mega-menu">
+	                            <a href="category_detail.html?comtyId=2">电视</a>
+	                            <input type="hidden" value="2">
+	                            <div class="mega-menu">
+	                                <div class="row row-v-10"></div>
+	                            </div>
+	                        </li>  
+	                        
+	                        <li class="dropdown-mega-menu">
+	                            <a href="category_detail.html?comtyId=3">笔记本</a>
+	                            <input type="hidden" value="3">
+	                            <div class="mega-menu">
+	                                <div class="row row-v-10"></div>
+	                            </div>
+	                        </li>  
+	                        
+	                        <li class="dropdown-mega-menu">
+	                            <a href="category_detail.html?comtyId=4">智能家电</a>
+	                            <input type="hidden" value="4">
+	                            <div class="mega-menu">
+	                                <div class="row row-v-10"></div>
+	                            </div>
+	                        </li> 
+	                        
+	                        <li class="dropdown-mega-menu">
+	                            <a href="category_detail.html?comtyId=5">健康家居</a>
+	                            <input type="hidden" value="5">
+	                            <div class="mega-menu">
+	                                <div class="row row-v-10"></div>
+	                            </div>
+	                        </li>
+	                        <li class="dropdown-mega-menu">
+	                            <a href="seckill/seckill.html">限时秒杀</a>
+	                        </li> 
+	                        <li class="dropdown-mega-menu">
+	                            <a href="assets/grouplist.html">拼团特惠</a>
+	                        </li>                                   
+	                    </ul>
+	                </div>
+	            </nav>
+	        </div>
+	    </div>
+	    <!-- End Header Menu -->
+
+	</header>
+		
+		<main id="mainContent" class="main-content">
+		<div class="order-bd">
+		    <div class="container">
+		    	<div class="page-sidebar col-md-4 col-sm-5 col-xs-12">
+	
+		            <!-- Blog Sidebar -->
+		            <aside class="sidebar blog-sidebar">
+		                <div class="row row-tb-10">
+		                    <div class="col-xs-12">
+		                        <!-- Categories Widget -->
+		                        <div class="widget categories-widget panel pt-20 prl-20">
+		                            <div class="widget-header">
+		                                <h3 class="widget-title h-title">订单中心</h3>
+		                            </div>
+		                            <div class="widget-body ptb-20">
+		                                <ul>
+		                                    <li>
+		                                        <a href="orderView.html?type=all">我的订单</a>
+		                                    </li>
+		                                    <li>
+		                                        <a href="assets/groupOrderProfile.html">团购订单 </a>
+		                                    </li>
+		                                    <li>
+		                                        <a href="unCommentedProduct.html">晒单评价</a>
+		                                    </li>
+		                                </ul>
+		                            </div>
+		                        </div>
+		                        <!-- End Categories Widget -->
+		                    </div>
+		                     <div class="col-xs-12">
+		                        <!-- Categories Widget -->
+		                        <div class="widget categories-widget panel pt-20 prl-20">
+		                            <div class="widget-header">
+		                                <h3 class="widget-title h-title">个人中心</h3>
+		                            </div>
+		                            <div class="widget-body ptb-20">
+		                                <ul>
+		                                    <li>
+		                                        <a href="person.html">我的个人中心</a>
+		                                    </li>
+		                                    <li>
+		                                        <a href="giftcard.html">小米礼品卡</a>
+		                                    </li>
+		                                    <li>
+		                                        <a href="favor.html">喜欢的商品</a>
+		                                    </li>
+		                                    <li>
+		                                        <a href="address.html">地址管理</a>
+		                                    </li>
+		                                </ul>
+		                            </div>
+		                        </div>
+		                        <!-- End Categories Widget -->
+		                    </div>
+		                    <div class="col-xs-12">
+		                        <div class="widget archive-widget panel pt-20 prl-20">
+		                            <h3 class="widget-title h-title">账户管理</h3>
+		                            <div class="widget-content ptb-20">
+		                                <ul>
+		                                    <li>
+		                                        <a href="account.html">个人信息</a>
+		                                    </li>
+		                                </ul>
+		                            </div>
+		                        </div>
+		                    </div>
+		
+		                </div>
+		            </aside>
+		            <!-- End Blog Sidebar -->
+		        </div>
+		        <div id="orderBody" class="order-content">
+		            <div class="tr" v-bind:style="{height: addressPx+'px'}">
+		                <h2 class="h-font" style="margin:5px 0px 25px 0px;">收货地址</h2>
+		                <br>
+		                <div @click="selectItem(addressItem)" v-for="(addressItem,index) in addresses" v-if="addressItem!=null" class="address-body" v-bind:class="{selected:addressItem.isSelected}">
+		                	<font style="padding-left:15px; font-size:18px;font-weight:700;">{{addressItem.consumerName}}</font><br>
+		                	<font style="padding-left:15px;">{{addressItem.telephone}}</font><br>
+		                	<font style="padding-left:15px;">{{addressItem.addressDetail}}</font><br>
+		                	<div align="left" style="float:left">
+		                		<button @click="initInput(addressItem,index,1)" v-show="addressItem.isSelected" style="color:#ff6700;"  data-toggle="modal" data-target="#myAddressModal">修改</button>
+		                		
+		                	</div>
+		                	<div align="right">
+		                		<button @click="removeAddress(addressItem.addressId)" v-show="addressItem.isSelected" style="color:#ff6700;" >删除</button>
+		                	</div>
+		                	
+		                	
+		                </div>
+		                <div @click="initInput(0,0,0)" class="address-body" style="text-align:center;" data-toggle="modal" data-target="#myAddressModal">
+		                	<a><i style="font-size: 40px;" class="fa fa-plus-square-o"></i></a>
+		                	<p style="font-size:12px;">添加新地址</p>
+		                </div>
+		                <!-- 修改地址的模态框 -->
+		                <div class="modal fade" data-backdrop="static" id="myAddressModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						    <div class="modal-dialog">
+						        <div class="modal-content">
+						            <div class="modal-header">
+						                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						                    &times;
+						                </button>
+						                <h4 class="modal-title" id="myModalLabel">
+						                    修改收货地址
+						                </h4>
+						            </div>
+						            <div id="body" class="modal-body">
+						                <input id="name" value="" type="text" placeholder="姓名" style="width:200px;height:40px;"/>
+						                <input id="tel" value="" type="text" placeholder="手机号码" style="width:200px;height:40px;" onblur="validateTel()"/>
+						                	<i id="telError" class="glyphicon glyphicon-remove-circle" style="color:#ff6700; display:none;" ></i>
+						                <input id="citySelect" value="" placeholder="请选择地址，例如xx省-xx市-xxx区" type="text" style="margin-top:10px;width:400px;height:40px;" class="city_input" readonly="readonly">   
+						            	<input id="detail" value="" placeholder="请输入详细地址" type="text" style="margin-top:10px;width:400px;height:40px;">   
+						           		<input id="postcode" value="" placeholder="请输入邮政编码" type="text" style="margin-top:10px;width:200px;height:40px;" onblur="validatePostcode()"> 
+						           			<i id="postcodeError" class="glyphicon glyphicon-remove-circle" style="color:#ff6700; display:none;" ></i>
+						           		<input id="index" value="" type="text" style="margin-top:10px;width:200px;height:40px;" hidden="hidden">     
+						            </div>
+						            <div class="modal-footer" style="text-align:center;">
+						            	<button  id="bton" @click="saveAddress()" type="button" class="btn btn-primary">
+						                    确认
+						                </button>
+						                <button type="button" class="btn btn-default"  data-dismiss="modal">关闭
+						                </button>
+						            </div>
+						        </div><!-- /.modal-content -->
+						    </div><!-- /.modal -->
+		            	</div>
+		            </div>
+			       
+		    
+		        </div>
+		    </div> 
+		</div>
+	</main>
+	<div id="footer"></div>
+</div>
+</body>
+	<script type="text/javascript" src="assets/js/jquery-1.12.3.min.js" ></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<script type="text/javascript" src="assets/js/cityselect.js"></script>
+	<script type="text/javascript" src="assets/js/vue.js" ></script>
+	<script type="text/javascript" src="assets/js/address.js" ></script>
+	<script type="text/javascript" src="assets/js/jquery.tmpl.js"></script>
+	<script type="text/javascript" src="assets/js/header.js"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){		    
+		    //加载尾部
+		    $("#footer").load("footer.html");		    
+		});
+    </script>
+</html>

@@ -279,5 +279,11 @@ public class ProductService {
 	public List<Product> getFavors(int userid) {
 		return productDAO.getFavorsByUserId(userid);
 	}
+	
+	//新增根据proId得到comttyId
+	public Product getComttyIdByProId(int proId) {
+		// TODO Auto-generated method stub
+		return productDAO.getCartInfoByProId(proId);
+	}
 }
 

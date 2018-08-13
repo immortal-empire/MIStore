@@ -1,0 +1,76 @@
+.my-order {
+	padding:20px;
+	border: 1px solid #ddd;
+}
+.order-box{
+	padding:20px;
+}
+.order_top {
+	padding: 20px;
+	border-bottom: 1px solid #eee;
+}
+
+.order_info_right{
+	display:flex;
+	justify-content: center;
+}
+
+.order_bottom {
+	padding: 20px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.order_info {
+	display: flex;
+	justify-content: space-between;
+}
+
+.order_bottom_leftviews{
+	padding:20px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.order_bottom_left_picture{
+	
+}
+
+.order_bottom_left_info{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.order_bottom_left_info_name{
+	margin:auto;
+}
+
+.order_bottom_right{
+	display:flex;
+	justify-content: center;
+}
+
+.orderspec-id{
+	padding: 20px;
+	border-bottom: 1px solid #ddd;
+}
+
+.orderspec-status{
+	padding: 20px;
+	border-bottom: 1px solid #ddd;
+}
+
+.orderspec-products-detial{
+	border-bottom: 1px solid #ddd;
+}
+.orderspec-products{
+	padding: 20px;
+}
+.order-detail-total{
+	float:right 
+}
+
+
+
+
+

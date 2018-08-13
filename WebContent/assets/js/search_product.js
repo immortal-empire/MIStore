@@ -2,8 +2,9 @@ var keyword = "";
 var proType = "";
 var user = "";
 var products = [];
+var offset = [];
 
-$(document).ready(function() {
+$(document).ready(function() {  
 	keyword = sessionStorage["keyword"];
 	proType = sessionStorage["proType"];
 	sessionStorage["keyword"] = "";
@@ -13,9 +14,9 @@ $(document).ready(function() {
 
 	$("#header").load("header.html", function() {
 		$("#searchProduct").val(keyword);
+		offset = $(".header-cart").offset();
 	});
 	$("#footer").load("footer.html");
-
 	search_result();
 	sortManage();
 });
@@ -86,6 +87,7 @@ var pagination = function(data, count) {
 			});
 		});
 		favorManage();
+		addToCart();
 	}
 
 var displayResultByPage = function(data, curr, limit) {
@@ -125,7 +127,7 @@ var favorManage = function() {
 			}
 		});
 	};
-
+	
 var addToFavor = function(userid, proid) {
 		$.ajax({
 			type: "post",
@@ -149,6 +151,67 @@ var removeFromFavor = function(userid, proid) {
 			}
 		});
 	}
+
+var addToCart = function(){
+	$(".fa-cart-plus").click(function() {
+		var proId = $(this).parents(".coupon-single").find("input[type=hidden]").val();
+
+		//发起请求，将商品加入购物车   参数为商品id 需判断用户是否登录 from 徐卓辉
+		var user = window.localStorage.getItem("user");
+		if( user== null || user == "" || user== undefined) {
+			console.log("用户未登录");
+			saveCartInfoToLocal(parseInt(proId));
+		}else {//用户已登录
+			var cid = JSON.parse(user).id;
+			saveCartInfoToDB(cid,parseInt(proId));
+		}
+		$("#header").load("header.html");
+		$('#success').modal('show');		
+	});
+}
+
+
+function saveCartInfoToLocal(proId) {
+	var old = window.localStorage.getItem("products");
+	var dataLocal;
+	if( old== null || old.length == 0) {
+		dataLocal = null;
+	}else {
+		dataLocal = JSON.parse(old);
+		console.log(JSON.stringify(dataLocal));
+	}
+	$.ajax({
+		type:"post",
+		url:"getCartInfoByProId/"+proId,
+		async:false,
+		dataType:"json",
+		contentType:"application/json",
+		data:JSON.stringify(dataLocal),
+		//返回的是CartProductInfo对象
+		success:function(data){
+			//更新本地LocalStorage, 应该为追加, 如果已存在则购买数量加1, 未存在则新增一条记录
+			//改为在Service层实现
+			window.localStorage.setItem("products",JSON.stringify(data));
+			console.log(window.localStorage.getItem("products"));
+		},
+	});
+};
+
+function saveCartInfoToDB(cid,proId) {
+	$.ajax({
+		type:"post",
+		url:"addProductToCart/"+cid+"/"+proId,
+		async:false,
+		dataType:"json",
+		//返回的是CartProductInfo对象
+		success:function(data){
+			//更新本地LocalStorage, 应该为追加, 如果已存在则购买数量加1, 未存在则新增一条记录
+			//改为在Service层实现
+			window.localStorage.setItem("products",JSON.stringify(data));
+			console.log(window.localStorage.getItem("products"));
+		},
+	});
+}
 
 var sortManage = function() {
 		//按价格排序，通过点击事件触发

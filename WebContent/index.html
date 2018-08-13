@@ -15,7 +15,8 @@
     <link href="assets/vendors/owl-carousel/owl.theme.min.css" rel="stylesheet">
     <link href="assets/css/base.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/index.css" rel="stylesheet">    
+    <link href="assets/css/index.css" rel="stylesheet">  
+    <link rel="stylesheet" href="assets/css/index.min.css" />  
 </head>
 
 <body id="body" class="wide-layout preloader-active">
@@ -97,16 +98,7 @@
                                 </aside>
                             </div>
                             <div class="col-xs-12 col-md-8 col-lg-9">
-                                <div class="header-deals-slider owl-slider" data-loop="true" data-autoplay="true" data-autoplay-timeout="10000" data-smart-speed="1000" data-nav-speed="false" data-nav="true" data-xxs-items="1" data-xxs-nav="true" data-xs-items="1" data-xs-nav="true" data-sm-items="1" data-sm-nav="true" data-md-items="1" data-md-nav="true" data-lg-items="1" data-lg-nav="true">
-                                    <div class="deal-single panel item">
-                                        <figure class="deal-thumbnail embed-responsive embed-responsive-16by9" data-bg-img="assets/images/index/banner1.jpg">                                   
-                                        </figure>
-                                    </div>
-                                    
-                                    <div class="deal-single panel item">
-                                        <figure class="deal-thumbnail embed-responsive embed-responsive-16by9" data-bg-img="assets/images/index/banner2.jpg">                                   
-                                        </figure>
-                                    </div>
+                                <div id="indexCarousel" class="header-deals-slider owl-slider" data-loop="true" data-autoplay="true" data-autoplay-timeout="10000" data-smart-speed="1000" data-nav-speed="false" data-nav="true" data-xxs-items="1" data-xxs-nav="true" data-xs-items="1" data-xs-nav="true" data-sm-items="1" data-sm-nav="true" data-md-items="1" data-md-nav="true" data-lg-items="1" data-lg-nav="true">
                                 </div>
                             </div>
                         </div>
@@ -155,8 +147,46 @@
                             </div>
                         </div>
                     </div>
-
-					<section id="displayProducts"></section>
+						
+                    <section class="section stores-area stores-area-v1 ptb-30">
+                        <header class="panel ptb-15 prl-20 pos-r mb-30">
+                            <h3 class="section-title font-18">小米闪购</h3>
+                        </header>
+                    		<div class="home-hero-container container" style="width: 1226px;margin-right: auto;margin-left: auto;font-family:Microsoft Yahei;">
+								<!-- 开始闪购 -->
+								<div class="xm-flashPurchase" style="margin-left:-14px;">
+									<div class="xm-plain-box">
+										<div class="box-bd">
+											<div class="xm-carousel-list goods-list rainbow-list clearfix J_flashPurchaseList" style="margin: 0;padding: 0;list-style-type: none;">
+												<ul class="xm-flashPurchase-countdown" style="margin-right: -8px;">
+													<li class="rainbow-item-4 J_flashPurchaseInfo" style="float: left;width: 216px;margin-right: 10px;background-color: white;">
+														<div class="time-title J_falshRound" id="time">00:00 场</div>
+														<img src="assets/images/flashpurchase.png" style="border: 0;"/>
+														<div class="sub J_falshDesc" id="timeInfo">距离结束还有</div>
+														<div class="countdown clearfix J_falshTime">
+															<div class="box" id="left_hour">00</div>
+															<div class="dosh">:</div>
+															<div class="box" id="left_minute">00</div>
+															<div class="dosh">:</div>
+															<div class="box" id="left_second">00</div>
+														</div>
+													</li>
+												</ul>
+												<div class="xm-carousel-wrapper" style="width: 915px;height: 340px; overflow: hidden;">
+													<ul class="xm-flashPurchase-list xm-carousel-col-5-list J_purchase_temp J_carouselList" style="width: 2000px; margin-left: 0px; transition: margin-left 0.5s ease;" id="items">
+														
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- 结束闪购 -->
+					
+							</div>
+					</section>												
+						
+					<section id="displayProducts"></section>				
 				                   
                     <section class="section stores-area stores-area-v1 ptb-30">
                         <header class="panel ptb-15 prl-20 pos-r mb-30">
@@ -196,38 +226,44 @@
     <script src="assets/vendors/modernizr/modernizr-2.6.2.min.js"></script>
     <script type="text/javascript" src="assets/vendors/owl-carousel/owl.carousel.min.js"></script>
     <script type="text/javascript" src="assets/js/index.js"></script>
+    <script type="text/javascript" src="assets/js/index-seckill.js" ></script>
     <script type="text/javascript" src="assets/js/main.js"></script>
     <script type="text/javascript" src="assets/js/jquery.tmpl.js"></script> 	   
 	<script id="popProduct" type="text/x-jquery-tmpl">
-    <div class="col-md-3">	                                            	
-    	<figure class="deal-thumbnail embed-responsive embed-responsive-4by3" 
-    	data-bg-img="assets/images/deals/deal_03.jpg" style="height:20%;">                                              
-    	</figure>
+    <div class="col-md-3" onclick="jump(${$item.getComttyId()});">                                  	
+	    <figure class="deal-thumbnail embed-responsive embed-responsive-4by3" 
+    			data-bg-img="assets/images/products/${picture}/search.jpg" style="height:20%;">                                              
+    	</figure> 
     	<div class="caption" style="margin:10px 5px;letter-spacing: 1.6pt;">
      		<p class="text-center">${$item.getCategoryName()}</p>
-     		<p class="text-center text-danger">${sellingPrice}起</p>
+     		<p class="text-center text-danger">￥${sellingPrice}起</p>
 		</div>
 	</div>     	
 	</script>
 	<script id="hotComments" type="text/x-jquery-tmpl">
     <div class="blog-post col-xs-12 col-sm-6 col-md-3">
 	    <article class="entry panel">
-	        <figure class="entry-media post-thumbnail embed-responsive embed-responsive-16by9" data-bg-img="assets/images/deals/deal_03.jpg">
+	        <a href="addShoppingCart.html?comttyId=${$item.getComttyId()}">
+			<figure class="entry-media post-thumbnail embed-responsive embed-responsive-16by9" data-bg-img="assets/images/products/${$item.getPictureSrc()}/search.jpg">
 	        </figure>
+			</a>
 	        <div class="entry-wrapper pt-20 pb-10 prl-20">
 	            <header class="entry-header">
 	                <h4 class="entry-title mb-10 mb-md-15 font-xs-16 font-sm-18 font-md-16 font-lg-16">
-						<a href="blog_single_standard.html">${$item.getProName()} | ${$item.getPrice()}元</a>
+						<a href="addShoppingCart.html?comttyId=${$item.getComttyId()}">${$item.getProName()} | ${$item.getPrice()}元</a>
 					</h4>
 	                <div class="entry-meta mb-10">
 	                    <ul class="tag-info list-inline">
-	                        <li><i class="icon fa fa-user"></i>来自于 ${cname}  的评价</li>                     
+	                        <li><i class="icon fa fa-user"></i>来自于 ${cName}  的评价</li>                     
 	                    </ul>
 	                </div>
 	            </header>
 	            <div class="entry-content">
 	                <p class="entry-summary">${comment}</p>
 	            </div>
+                <footer class="entry-footer text-right">
+                   <a href="comments.html?proid=${$item.getProId()}" class="more-link btn btn-link">查看更多评论 <i class="icon fa fa-long-arrow-right"></i></a>
+                </footer>
 	        </div>
 	    </article>
 	</div>	
@@ -251,21 +287,25 @@
 		        <div class="row">
 		            <div class="col-xs-12">
 		                <div class="text-center p-20">
-		                    <img class="store-logo" src="assets/images/deals/deal_03.jpg" alt="">
+		                    <a href="addShoppingCart.html?comttyId=${comttyId}">
+								<img class="store-logo" src="assets/images/products/${picture}/search.jpg" alt="">
+							</a>
 		                </div>
 		            </div>
 		
 		            <div class="col-xs-12">
 		                <div class="panel-body">
 		                    <h5 class="deal-title mb-10">
-		                        <a href="#">${proName}&nbsp;&nbsp;&nbsp;${configuration}</a>
+		                        <a href="addShoppingCart.html?comttyId=${comttyId}">${proName}&nbsp;&nbsp;&nbsp;${configuration}</a>
 		                    </h5>
 	               			 <div class="entry-meta mb-10">
 	                    		<ul class="tag-info list-inline">
 	                        		<li> ${proDescriptive}</li>                     
 	                    		</ul>
 	                		</div>
-		                    <h4 class="mb-10 t-uppercase" style="color: orangered;">${sellingPrice}元</h4>
+							<a href="addShoppingCart.html?comttyId=${comttyId}">
+		                   		<h4 class="mb-10 t-uppercase" style="color: orangered;">${sellingPrice}元</h4>
+							</a>
 		                </div>
 		            </div>
 		        </div>
@@ -274,10 +314,10 @@
 	</script>
 	<script id="recommendItem" type="text/x-jquery-tmpl">
 		<div class="store-item t-center item">
-		    <a href="addShoppingCart.html?comttyId=${comttyId}" class="panel is-block">
+		    <a href="addShoppingCart.html?comttyId=${$item.getComttyId()}" class="panel is-block">
 		        <div class="embed-responsive embed-responsive-4by3">
 		            <div class="store-logo">
-		                <img src="assets/images/cart/product_11.jpg" alt="">
+		                <img src="assets/images/products/${picture}/favor.jpg" alt="">
 		            </div>
 		        </div>
 		        <h6 class="store-name ptb-10">
@@ -287,6 +327,20 @@
 				</h6>
 		    </a>
 		</div>	
+	</script>
+	<script type="text/javascript">
+		function jump(data){
+			window.location.href="addShoppingCart.html?comttyId="+data;
+		}
+	</script>
+	<script id="carouselItem" type="text/x-jquery-tmpl">
+    <div class="deal-single panel item">
+		<a href="addShoppingCart.html?comttyId=${comttyId}">
+	    	<figure class="deal-thumbnail embed-responsive embed-responsive-16by9" 
+				data-bg-img="assets/images/products/${picture}/carousel.jpg">                                   
+	    	</figure>
+		</a>
+	</div>	
 	</script>
 </body>
 

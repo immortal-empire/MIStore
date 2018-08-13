@@ -4,7 +4,7 @@ $(document).ready(function(){
 	    // 是的! 支持 localStorage  sessionStorage 对象!
 	    // 一些代码.....
 	    console.log("支持");
-	   	window.localStorage.setItem("products","");
+	    //window.localStorage.setItem("products","");
 	} else {
 		console.log("抱歉! 不支持 web 存储");
 	    // 抱歉! 不支持 web 存储。
@@ -82,6 +82,7 @@ $("#login").click(function(){
 			success:function(data)
 			{
 				console.log(data);
+				
 				//console.log(data.cname);
 				window.localStorage.setItem("user",JSON.stringify(data));
 				var user = window.localStorage.getItem("user");
@@ -97,16 +98,14 @@ $("#login").click(function(){
 					console.log("LocalStorage中有商品, 更新数据库");
 					updateCart(data.id,JSON.parse(old));
 				}
-				//location.href="addShoppingCart.html?"+"comttyId="+1;
+				//location.href="index.html";
 				window.history.back();
 			},
-//	        error : function(XMLHttpRequest, textStatus, errorThrown) {
-//	        	//这个error函数调试时非常有用，如果解析不正确，将会弹出错误框
-//	        	console.log(XMLHttpRequest.responseText); 
-//	        	console.log(XMLHttpRequest.status);
-//	        	console.log(XMLHttpRequest.readyState);
-//	        	console.log(textStatus); // parser error;
-//      	}
+	        error : function(XMLHttpRequest, textStatus, errorThrown) {
+	        	//用户名或密码错误
+	        	$("#message").css("display","block");
+	        	$("#password").val("");
+        	}
 		});	
 		//location.href="signupDetail.html?"+"phone="+phone;
 	}else {
@@ -120,10 +119,11 @@ function getProductInCart(cid){
 	$.ajax({
 		type:"post",
 		url:"getProductInCart/"+cid,
-		async:true,
+		async:false,
 		success:function(data){
 			//console.log("haha");
 			console.log(data);
+			//window.localStorage.removeItem("products");
 			window.localStorage.setItem("products",JSON.stringify(data));
 			console.log(window.localStorage.getItem("products"));
 		},
@@ -135,13 +135,14 @@ function updateCart(cid,old) {
 	$.ajax({
 		type:"post",
 		url:"updateCart/"+cid,
-		async:true,
+		async:false,
 		dataType:"json",
 		contentType:"application/json",//@RequestBody识别json字符串
 		data:JSON.stringify(old),
 		success:function(data)
 		{
 			console.log("更新后localStorage");
+			//window.localStorage.removeItem("products");
 			window.localStorage.setItem("products",JSON.stringify(data));
 			console.log(window.localStorage.getItem("products"));			
 			//console.log(data.cname);

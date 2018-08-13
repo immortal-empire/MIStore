@@ -8,7 +8,7 @@
                 <div id="welcome" class="col-sm-12 col-md-4 is-hidden-sm-down">
                     <ul class="nav-top nav-top-left list-inline t-left">
                         <li>
-                        	<a>
+                        	<a id="welcomelink" href="#">
                         		<i class="fa fa-home"></i>
                         		<div id="welcomeMessage" style="display: inline;">请登录</div>
                         	</a>
@@ -62,7 +62,7 @@
                                                 <option value="-1">全部分类</option>
                                             </select>
                                             <div class="input-group-btn">
-                                                <button id="searchBtn" type="button" class="btn btn-lg btn-search btn-block">
+                                                <button id="searchBtn" type="button" class="btn btn-lg btn-search btn-block btn-orange">
                                                     <i class="fa fa-search font-16"></i>
                                                 </button>
                                             </div>
@@ -73,7 +73,7 @@
                         </div>
                         <div class="col-sm-4 t-xs-center t-md-right">
                             <div class="header-cart">
-                                <a href="cart.html">
+                                <a href="cartAndOrder/cart.html">
                                     <span class="icon lnr lnr-cart"></span>
                                     <div><span class="cart-number">0</span>
                                     </div>
@@ -151,7 +151,13 @@
                             <div class="mega-menu">
                                 <div class="row row-v-10"></div>
                             </div>
-                        </li>                                  
+                        </li>
+                        <li class="dropdown-mega-menu">
+                            <a href="seckill/seckill.html">限时秒杀</a>
+                        </li> 
+                        <li class="dropdown-mega-menu">
+                            <a href="assets/grouplist.html">拼团特惠</a>
+                        </li>                                   
                     </ul>
                 </div>
             </nav>
@@ -170,13 +176,17 @@
 							aria-hidden="true">×
 					</button>
 					<h4 class="modal-title" id="myModalLabel">
-						还未登录
+						查看失败
 					</h4>
 				</div>
 				<div class="modal-body">
 					您还未登录，请先登录！
 				</div>
 				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="window.location.href='signin.html'"
+						style="background-color: #66b2ff;">
+						马上登录
+					</button>			
 					<button type="button" class="btn btn-default" 
 							data-dismiss="modal">关闭
 					</button>
@@ -193,12 +203,14 @@
 
 <script id="dropProduct" type="text/x-jquery-tmpl">
     <div class="col-md-2">
+	<a href="addShoppingCart.html?comttyId=${$item.getComttyId()}">
         <figure class="deal-thumbnail embed-responsive embed-responsive-4by3" 
-        	data-bg-img="assets/images/deals/deal_03.jpg">                                              
+        	data-bg-img="assets/images/products/${picture}/search.jpg">                                              
         </figure>
         <div class="caption" style="margin:10px 5px;letter-spacing: 1.6pt;">
          	<p class="text-center">${$item.getCategoryName()}</p>
          	<p class="text-center text-danger">${sellingPrice}起</p>
 		</div>
+	</a>
     </div>  
 </script>                                  

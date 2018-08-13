@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neu.groupbuy.model.dao.GroupPurchaseDAO">
+
+	<!-- 查找出所有可以团购的商品 -->
+	<select id="selectGroupPurchase" resultMap="groupPurResult">
+		select * from grouppurchase_info gp, product p
+		where gp.proId = p.proId
+		and gp.gState = '1'
+	</select>
+	<resultMap type="GroupPurchase" id="groupPurResult">
+		<result property="groid" column="groid"/>
+		<result property="proid" column="proid"/>
+		<result property="groupPrice" column="groupPrice"/>
+		<result property="gMinimumSum" column="gMinimumSum"/>
+		<result property="gStartTime" column="gStartTime"/>
+		<result property="gEndTime" column="gEndTime"/>
+		<result property="gResidueSum" column="gResidueSum"/>
+		<result property="gState" column="gState"/>
+		<association property="product" column="proId" 
+		   	javaType="Product" resultMap="productResult" />
+		   	<!-- 如果有多个外键，可以用多个association关联 -->
+	</resultMap>
+	<resultMap type="Product" id="productResult">
+		<result column="proId" property="proId"/>
+		<result column="comttyId" property="comttyId"/>
+		<result column="proName" property="proName"/>
+		<result column="color" property="color"/>
+		<result column="configuration" property="configuration"/>
+		<result column="picture" property="picture"/>
+		<result column="inventory" property="inventory"/>
+		<result column="sellingPrice" property="sellingPrice"/>
+		<result column="proDescriptive" property="proDescriptive"/>
+		<result column="addtime" property="addtime"/>
+		<result column="state" property="state"/>
+	</resultMap>
+	
+
+	
+</mapper>

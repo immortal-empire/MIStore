@@ -14,12 +14,12 @@ var banner_js = function(index) {
 	  
     tempLi.on('mouseenter', function () {
         if ($(window).width() > 943) {
-            $(this).children(".pop").fadeIn(500);
+            $(this).children(".pop").fadeIn(200);
         }
     });
     tempLi.on('mouseleave', function () {
         if ($(window).width() > 943) {
-            $(this).children(".pop").fadeOut(500);
+            $(this).children(".pop").fadeOut(200);
         }
     });
 };
@@ -44,7 +44,7 @@ var banner_product = function(){
 	        	"ids":arr
 	        },
 	        success:function(data) {
-	        	console.log(JSON.stringify(data));
+	        	//console.log(JSON.stringify(data));
 	        	sessionStorage["index_banner_product"] = JSON.stringify(data);
 	        	products = JSON.stringify(data);
 	    	} 
@@ -63,11 +63,36 @@ var banner_product = function(){
         	$("#popProduct").tmpl(products, {
         		getCategoryName:function() {
         			return this.data.twoType.comttyName;
-        		}
+        		},
+        		getComttyId:function(){
+        			return this.data.comttyId;
+        		}     		
         	}).appendTo(tempPop); 
     	}
     }); 
+    
+    carousel(data);
 
+};
+
+//轮播加载
+var carousel = function(data){
+	var carousels = [];
+	$.each(data, function(item) {
+		var tempData = data[item];
+		if(data[item].length>0){
+			tempData.sort(sortLatest);
+			carousels.push(tempData[0]);
+		}
+	});
+	
+	$("#carouselItem").tmpl(carousels).appendTo($("#indexCarousel"));
+	
+}
+
+//按上架时间排序
+var sortLatest = function(x, y) {
+	return Date.parse(y.addtime) - Date.parse(x.addtime);
 };
 
 //商品分类展示
@@ -83,7 +108,7 @@ var display_products = function(){
 	        async:false,
 	        dataType: 'json',
 	        success:function(data) {
-	        	console.log("分类展示"+JSON.stringify(data));
+	        	//console.log("分类展示"+JSON.stringify(data));
 	        	displayRender(data);
 	        	sessionStorage["index_display_product"] = JSON.stringify(data);	
 	    	}  
@@ -124,13 +149,23 @@ var hot_comment_product = function() {
         url:"hot_comment_product.action",
         async:false,
         dataType: 'json',
-        success:function(data) {   
+        success:function(data) {
+        	console.log("热评"+JSON.stringify(data));
         	$("#hotComments").tmpl(data, {
+        		getComttyId:function(){
+        			return this.data.product.comttyId;
+        		},
         		getProName:function(){
         			return this.data.product.proName;
         		},
         		getPrice:function(){
         			return this.data.product.sellingPrice;
+        		},
+        		getPictureSrc:function(){
+        			return this.data.product.picture;
+        		},
+        		getProId:function(){
+        			return this.data.product.proId;
         		}
         	}).appendTo("#comments"); 
     	} 
@@ -145,7 +180,11 @@ var recommend = function() {
         async:false,
         dataType: 'json',
         success:function(data) { 
+        	//console.log(JSON.stringify(data));
         	$("#recommendItem").tmpl(data, {
+        		getComttyId:function(){
+        			return this.data.twoType.comttyId;
+        		}
         	}).appendTo("#recommend"); 
     	} 
     });	

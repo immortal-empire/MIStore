@@ -1,8 +1,40 @@
 var files = [];
+(function ($) {  
+    //扩展方法获取url参数  
+    $.getUrlParam = function (name) {  
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象  
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数  
+        if (r != null) 
+        	return unescape(r[2]); 
+        return null; //返回参数值  
+}  
+})(jQuery);
+var user = window.localStorage.getItem("user");
+var cid = JSON.parse(user).id;
+var orderId = $.getUrlParam('orderId');
+var proId = $.getUrlParam('proId');
+console.log(orderId);
+console.log(proId);
 $(document).ready(function(){
-	
+	$("#cid").val(cid);
+	$("#orderid").val(orderId);
+	$("#proId").val(proId);
 	data_rating();
-	do_rating();	
+	do_rating();
+	$.ajax({		
+		url:"getComttyIdByProId/"+proId,
+		type:"post",
+		dataType:"json",
+		async:false,
+		success:function(data)
+		{
+			$("#proName").text(data.proName);
+			$("#configuration").text(data.configuration);
+			$("#color").text(data.color);
+			$("#proDescriptive").text(data.proDescriptive);
+			$("#proMakeComments").attr('src',"assets/images/products/"+data.picture+"/proMakeComments.jpg");
+		}		
+	});
 });
 function data_rating() {
         $('.rating').each(function () {
@@ -29,7 +61,7 @@ function do_rating() {
         $(this).parent().attr('data-rating', rate_value);
         console.log(rate_value);
         $("#rank").val(rate_value);
-        alert($("#rank").val());
+        //alert($("#rank").val());
         data_rating();
     
     });
@@ -75,6 +107,7 @@ $("#postComments").click(function(){
 			//{result:true}
 			if(data.result) {
 				alert("评论成功");
+				location.href="comments.html?proId="+proId;
 			}
 			else {
 				alert("评论失败");

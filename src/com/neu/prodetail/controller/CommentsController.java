@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.neu.cart.model.service.OrderService;
 import com.neu.prodetail.model.bean.Comments;
 import com.neu.prodetail.model.service.CommentsService;
 
@@ -20,6 +21,9 @@ import com.neu.prodetail.model.service.CommentsService;
 public class CommentsController {
 	@Autowired
 	private CommentsService commService;
+	
+	@Autowired
+	private OrderService orderService;
 	
 	@RequestMapping(value="/getCommentsByProIdAndRank/{proId}/{rank}", method=RequestMethod.POST)
 	@ResponseBody
@@ -52,6 +56,7 @@ public class CommentsController {
 		String uploadpath = request.getServletContext().getRealPath("/img") + "/" + folder;
 		System.out.println(uploadpath);
 		commService.addComments(comment,upload,uploadpath);
+		orderService.setIfEvaluate(comment.getOrderid(), comment.getProId());
 		return "{\"result\":true}";
 	}
 	

@@ -598,7 +598,7 @@
 .nav-top .fa {
   margin-right: 6px;
   font-size: 14px;
-  color: #2ed87b;
+  color: #ff6700;
 }
 
 /* |–––––––––––––––––[ Header Header ]–––––––––––––––| */
@@ -670,7 +670,7 @@
 .nav-menu-fixed > a,
 .nav-menu > li:hover > a,
 .nav-menu > li.active > a {
-  background-color: #2ed87b;
+  background-color: #ff6700;
 }
 .nav-menu > li > ul a {
   color: #314555;
@@ -678,7 +678,7 @@
 }
 .nav-menu > li > ul li:hover > a,
 .nav-menu > li > ul li.active > a {
-  color: #2ed87b;
+  color: #ff6700;
   background-color: #f1f1f1;
 }
 .nav-bar {
@@ -822,7 +822,7 @@
   }
   .nav-menu li:hover > a,
   .nav-menu li.active-mobile > a {
-    color: #2ed87b;
+    color: #ff6700;
     background-color: #f1f1f1;
   }
   .nav-header {
@@ -996,7 +996,7 @@
   font-size: 15px;
   width: 40px;
   margin-right: 20px;
-  color: #2ed87b;
+  color: black;
   border-right: 1px solid #ddd;
   text-align: center;
 }

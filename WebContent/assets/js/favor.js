@@ -105,7 +105,7 @@ var favor_delete_item = function() {
 		$(".close").on("click", function() {
 			if (confirm("确定要取消收藏吗 ?") === false) {
 				return false;
-			} else {
+			} else {			
 				var userid = 0;
 				if (user != "") {
 					userid = JSON.parse(user).id;

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neu.seckill.model.dao.SeckillDAO">
+    
+    <!-- 根据当前系统时间获取本期闪购活动开始时间 -->
+    <select id="getSeckillStartTime" parameterType="Date" resultType="Date"  >
+        select seckillStartTime 
+        from seckill_info 
+        where seckillStartTime <![CDATA[ <= ]]> #{now} and seckillState='1' 
+        order by seckillStartTime DESC 
+        limit 1
+    </select>
+    
+    <!-- 根据当前系统时间获取本期闪购活动结束时间 -->
+    <select id="getSeckillEndTime" parameterType="Date" resultType="Date"  >
+        select seckillEndTime 
+        from seckill_info 
+        where seckillStartTime <![CDATA[ <= ]]> #{now} and seckillState='1' 
+        order by seckillEndTime DESC 
+        limit 1
+    </select>
+    
+    <!-- 根据当前系统时间获取下一期闪购活动开始时间 -->
+    <select id="getNextSeckillStartTime" parameterType="Date" resultType="Date"  >
+        select 
+        seckillStartTime 
+        from seckill_info 
+        where seckillStartTime <![CDATA[ >= ]]> #{now} and seckillState='1' 
+        order by seckillStartTime ASC 
+        limit 1
+    </select>
+	
+	<!-- 根据当闪购活动开始时间，获取当期闪购的所有商品 -->
+	<select id="getSeckillProducts" parameterType="Date" resultMap="seckillInfoResult">
+		select * 
+		from seckill_info s inner join product p 
+		on seckillStartTime=#{startTime} and s.proId=p.proId and seckillState='1' 
+		order by seckillId	
+	</select> 
+	<resultMap type="SeckillInfo" id="seckillInfoResult">
+		<result property="productId" column="proId" />
+		<result property="productName" column="proName" />
+		<result property="description" column="proDescriptive" />
+	</resultMap>  
+	
+	<!-- 查询当前闪购商品的提醒数量 -->
+	<select id="getSeckillRemindNum" parameterType="int" resultType="int">
+		select count(seckillId)
+		from seckill_remind
+		where seckillId=#{seckillId} and state='1'
+	</select>
+	
+	<!-- 根据本期闪购开始时间，获取接下来四期闪购的开始时间 -->
+	<select id="getAllSeckillTime" parameterType="Date" resultType="Date"  >
+        select distinct 
+        seckillStartTime 
+        from seckill_info 
+        where seckillStartTime <![CDATA[ > ]]> #{startTime} and seckillState='1' 
+        order by seckillStartTime ASC 
+        limit 4
+    </select>
+    
+    <!-- 查询当前用户对该商品的提醒记录ID -->
+    <select id="getRemindId" parameterType="Remind" resultType="int">
+		select remindId
+		from seckill_remind
+		where CId=#{customerId} and seckillId=#{seckillId} and state='1'
+    </select>
+    
+    <!-- 添加提醒 -->
+    <insert id="addRemind" parameterType="Remind" >
+		<selectKey keyProperty="remindId" resultType="int" order="BEFORE">
+			<!-- select seq_userinfo.nextval from dual  -->
+			select ifnull(max(remindId),0)+1 from seckill_remind
+		</selectKey>
+		insert into seckill_remind
+		values(#{remindId},#{customerId},#{seckillId},1)
+	</insert>
+	
+	<!-- 取消提醒 -->
+	<update id="deleteRemind" parameterType="Remind">
+		update seckill_remind
+		set state=0
+		where Cid=#{customerId} and seckillId=#{seckillId}
+	</update>
+	
+	<!-- <select id="saveSeckillExecution"  parameterType= "map" statementType="CALLABLE">
+		{call execute_seckill(
+		#{seckillId,jdbcType=INTEGER,mode=IN},
+		#{userId,jdbcType=INTEGER,mode=IN},
+		#{now,jdbcType=DATE,mode=IN},
+		#{result,jdbcType=INTEGER,mode=OUT})}
+	</select> -->
+	
+	<!-- 根据闪购ID查询到闪购商品 -->
+	<select id="getSeckillProductById" parameterType="int" resultMap="seckillInfoResult">
+		select * 
+		from seckill_info s inner join product p 
+		on seckillId=#{seckillId} and s.proId=p.proId and seckillState='1' 
+	</select>
+	
+	<!-- 在购物车中查找当前闪购商品的记录 -->
+	<select id="findProductInShoppingcart" parameterType="ShoppingCart" resultType="int">
+		select count(*) 
+		from shoppingcart
+		where proId=#{proId} and cId=#{cId} and price=#{price} 
+			and addTime<![CDATA[ > ]]>#{seckillStartTime} and addTime<![CDATA[ < ]]>#{seckillEndTime}
+	</select>
+	
+	<!-- 将闪购商品添加到购物车中 -->
+	<insert id="addToShoppingcart" parameterType="ShoppingCart" >
+		<selectKey keyProperty="id" resultType="int" order="BEFORE">
+			<!-- select seq_userinfo.nextval from dual  -->
+			select ifnull(max(id),0)+1 from shoppingcart
+		</selectKey>
+		insert into shoppingcart
+		values(#{id},#{cId},#{proId},'1',#{price},1,null,'1',#{addtime})
+	</insert>
+	
+	<!-- 修改闪购商品库存 -->
+	<update id="updateRemainNum" parameterType="int">
+		update seckill_info
+		set seckillRemainNum=seckillRemainNum-1
+		where seckillId=#{seckillId} and seckillRemainNum>0
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+

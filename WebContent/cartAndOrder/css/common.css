@@ -1,0 +1,185 @@
+/***** button页面按钮 start*/
+.btn {
+    display: inline-block;
+    width: 158px;
+    height: 38px;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #b0b0b0;
+    font-size: 14px;
+    line-height: 38px;
+    text-align: center;
+    color: #b0b0b0;
+    cursor: pointer;
+    -webkit-transition: all .4s;
+    transition: all .4s;
+}
+.btn-primary-fill {
+    background: #ff6700;
+    border-color: #ff6700;
+    color: #fff;
+}
+.btn-primary:hover{
+    background-color: #ff6700;
+    border-color: #ff6700;
+}
+.btn-primary {
+    background: #ff6700;
+    border-color: #ff6700;
+    color: #fff;
+}
+/***** button页面按钮 end*/
+
+/***** head页面头部 start*/
+.head {
+    font-size: 12px;
+    height: 102px;
+    border-bottom: 2px solid #ff6700;
+    background: #fff;
+    color: #b0b0b0;
+}
+.head_log{
+	float: left;
+    margin: 26px 0 0 0;
+}
+.head_log img{
+    width: 48px;
+    height: 48px;
+}
+.head_title {
+    float: left;
+    margin: 26px 0 0 50px;
+}
+.head_title h1{
+    color: #424242;
+    font-size: 28px;
+    height: 48px;
+    line-height: 48px;
+}
+.head_login{
+    float: right;
+    margin: 26px 0 0 0;
+    line-height: 48px;
+}
+.head_register{
+    display: inline-block;
+    margin-left: 15px;
+}
+/***** head页面头部 end*/
+
+/***** footer 页面底部 start*/
+/*footer  footer_service*/
+.footer_service{
+    padding: 30px 0;
+    overflow: hidden;
+    border-bottom: 1px solid #e0e0e0;
+}
+.footer_service ul{
+    margin-right: -2px;
+}
+.footer_service ul li{
+    float: left;
+    width: 20%;
+    height: 25px;
+    font-size: 16px;
+    line-height: 25px;
+    border-right: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+/*footer  footer_link*/
+.footer_link{
+    padding: 40px 0;
+}
+.footer_link dl{
+    float: left;
+    width: 160px;
+    height: 112px;
+    margin: 0;
+}
+.footer_link dt{
+    margin: -1px 0 26px;
+    font-size: 14px;
+    line-height: 1.25;
+    color: #424242;
+}
+.footer_link dd{
+    margin: 10px 0 0;
+    font-size: 12px;
+}
+
+.footer_contact{
+    float: right;
+    width: 245px;
+    height: 112px;
+    border-left: 1px solid #e0e0e0;
+    text-align: center;
+    color: #616161;
+}
+.footer_contact .phone{
+    font-size: 26px;
+    color: #ff6700;
+}
+
+.footer_site{
+    background: #f5f5f5;
+}
+.footer_site p{
+    margin: 32px 0;
+    text-align: center;
+}
+/***** footer 页面底部 end*/
+
+/* 用户个人信息 start*/
+.user{
+    position: relative;
+    display: inline-block;
+    width: 120px;
+    text-align: center;
+    margin-left: -100px;
+}
+.user-info{
+    position: absolute;
+    left: 0;
+    top: 40px;
+    background-color: #fff;
+    color: #000;
+    z-index: 100;
+    width: 120px;
+    margin: 0;
+    padding: 7px 0;
+    list-style-type: none;
+    -webkit-box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+.user-info li,a{
+    line-height: 30px;
+    margin-left: -10px;
+}
+.user-info li:hover{
+    background-color: rgba(119, 108, 247, 0.13);
+}
+.user-info a:hover{
+    color: #ff6700;
+}
+/*hover 当鼠标悬停在上面时，改变样式*/
+.user:hover{
+    background-color: #fff;
+    color: #ff6700;
+    -webkit-box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+.user:hover .user-icon{
+    border-top-color: #ff6700;
+}
+.user-icon{
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 5px;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #1a140e;
+}
+/* 用户个人信息 end*/

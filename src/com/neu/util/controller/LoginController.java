@@ -14,6 +14,8 @@ public class LoginController {
 	@Autowired
 	private CustomerService customerService;
 	
+	
+	//如果Customer为Null则不会
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	@ResponseBody
 	public Customer login(Customer c) {

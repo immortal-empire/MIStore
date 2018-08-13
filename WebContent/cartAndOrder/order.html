@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>确认订单</title>
+		<link rel="icon" href="../assets/images/favicon/favicon.ico">
+	</head>
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/cityLayout.css">
+	<link rel="stylesheet" href="css/order.css" />
+	<link rel="stylesheet" href="css/common.css" />
+	<link rel="stylesheet" href="css/reset.css" />
+<body>
+	<div class="head">
+		<div class="container">
+			<div class="head_log">
+    			<div class="fl margin_25"><a href="../index.html" title="小米官网"><img src="img/logo-footer.png" alt="小米官网"/></a></div>
+			</div>
+		    <div class="head_title">
+		    	<h1>确认订单</h1>
+		    </div>
+		    <div id="headLogin" class="head_login">
+		            <div v-if="user!=null">
+		                <div class="user" id="user">
+		                    {{user.cname}} <span class="user-icon"></span>
+		                    <ul id="userinfo" class="user-info" hidden="hidden">
+		                        <li><a href="../person.html">个人中心</a></li>
+		                        <li><a href="../unCommentedProduct.html">评价晒单</a></li>
+		                        <li><a href="../favor.html">我的喜欢</a></li>
+		                        <li><a href="../index.html" @click="outLogin()">退出登录</a></li>
+		                    </ul>
+		                </div>
+		                <a href="../orderView.html">我的订单</a>
+		            </div>
+		    </div>
+		</div>
+	</div>
+	<div class="order-bd">
+	    <div class="container">
+	        <div id="orderBody" class="order-content">
+	            <div class="tr" v-bind:style="{height: addressPx+'px'}">
+	                <h2 class="h-font" style="margin:5px 0px 25px 0px;">收货地址</h2>
+	                <br>
+	                <div @click="selectItem(addressItem)" v-for="(addressItem,index) in addresses" v-if="addressItem!=null" class="address-body" v-bind:class="{selected:addressItem.isSelected}">
+	                	<font style="padding-left:15px; font-size:18px;font-weight:700;">{{addressItem.consumerName}}</font><br>
+	                	<font style="padding-left:15px;">{{addressItem.telephone}}</font><br>
+	                	<font style="padding-left:15px;">{{addressItem.addressDetail}}</font><br>
+	                	<button @click="initInput(addressItem,index,1)" v-show="addressItem.isSelected" style="margin:20px 0 5px 125px;color:#ff6700;"  data-toggle="modal" data-target="#myAddressModal">修改</button>
+	                </div>
+	                <div @click="initInput(0,0,0)" class="address-body" style="text-align:center;" data-toggle="modal" data-target="#myAddressModal">
+	                	<a><i style="font-size: 40px;" class="fa fa-plus-square-o"></i></a>
+	                	<p style="font-size:12px;">添加新地址</p>
+	                </div>
+	                <!-- 修改地址的模态框 -->
+	                <div class="modal fade" data-backdrop="static" id="myAddressModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					    <div class="modal-dialog">
+					        <div class="modal-content">
+					            <div class="modal-header">
+					                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					                    &times;
+					                </button>
+					                <h4 class="modal-title" id="myModalLabel">
+					                    修改收货地址
+					                </h4>
+					            </div>
+					            <div id="Addressbody" class="modal-body">
+					                <input id="name" value="" type="text" placeholder="姓名" style="width:200px;height:40px;"/>
+					                <input id="tel" value="" type="text" placeholder="手机号码" style="width:200px;height:40px;" onblur="validateTel()"/>
+					                	<i id="telError" class="glyphicon glyphicon-remove-circle" style="color:#ff6700; display:none;" ></i>
+					                <input id="citySelect" value="" placeholder="请选择地址，例如xx省-xx市-xxx区" type="text" style="margin-top:10px;width:400px;height:40px;" class="city_input" readonly="readonly">   
+					            	<input id="detail" value="" placeholder="请输入详细地址" type="text" style="margin-top:10px;width:400px;height:40px;">   
+					           		<input id="postcode" value="" placeholder="请输入邮政编码" type="text" style="margin-top:10px;width:200px;height:40px;" onblur="validatePostcode()"> 
+					           			<i id="postcodeError" class="glyphicon glyphicon-remove-circle" style="color:#ff6700; display:none;" ></i>
+					           		<input id="index" value="" type="text" style="margin-top:10px;width:200px;height:40px;" hidden="hidden">     
+					            </div>
+					            <div class="modal-footer" style="text-align:center;">
+					            	<button  id="bton" @click="saveAddress()" type="button" class="btn btn-primary">
+					                    确认
+					                </button>
+					                <button type="button" class="btn btn-default"  data-dismiss="modal">关闭
+					                </button>
+					            </div>
+					        </div><!-- /.modal-content -->
+					    </div><!-- /.modal -->
+	            	</div>
+	            </div>
+		        <div class="tr">
+		        	<h2 class="h-font">支付方式</h2>
+		           	<span>在线支付 （支持支付宝、银联、财付通、小米支付等）</span>
+		        </div>
+	        
+	            <div class="tr">
+	                <h2 class="h-font">配送时间</h2>
+	                <div id="paytime" class="pay-time pay-btn">
+	                    <a id="t0" @click="sendTime(0)">不限送货时间：周一至周日</a>
+	                    <a id="t2" @click="sendTime(2)">工作日送货：周一至周五</a>
+	                    <a id="t1" @click="sendTime(1)">双休日、假日送货：周六至周日</a>
+	                </div>
+	            </div>
+	            <div class="tr">
+	                <h2 class="h-font">配送方式</h2>
+	               <span v-if="isFree()">快递配送（免运费）</span>
+	               <span v-if="!isFree()">快递配送（运费{{expressFee}}元）</span>
+	            </div>
+	            <div id="invoice" class="tr">
+	                <h2 class="h-font">发票</h2>
+	                <div class="pay-invoice pay-btn">
+	                    <a id="eletriInvoice" @click="getInvoice(0)">电子发票（非纸质）</a>
+	                    <a id="generalInvoice" @click="getInvoice(1)">普通发票（纸质）</a>
+	                </div>
+	            </div>
+	            <div class="tr">
+	                <h2 class="h-font">商品</h2>
+	                <button class="pay-back" onclick="window.location.href='cart.html'">返回购物车 》</button>
+	            </div>
+	            <div class="tr">
+	        		<table class="order-tb-body">
+	                   <tr v-for="orderItem in order">
+	                        <td class="col-img"><img v-bind:src="setImgSrc(orderItem)" alt=""/></td>
+	                        <td class="col-name">{{orderItem.proName}}  {{orderItem.color}}  {{orderItem.configuration}}</td>
+	                        <td class="dj">{{orderItem.price}} 元 x {{orderItem.quantity}}</td>
+	                        <td class="price">{{orderItem.quantity*orderItem.price}} 元</td>
+	                    </tr>
+	                </table>
+	            </div>
+				<div class="tr">
+					<a @click="">
+          				<span data-toggle="modal" data-target="#myGiftCardModal" style="text-align:left;margin-left:10px;height:30px; font-size:25px;" class="glyphicon glyphicon-plus-sign"></span>
+        			</a>
+        			<h2 class="h-font">使用礼品卡</h2>
+        			
+        			<!-- 礼品卡的模态框 -->
+        			<div class="modal fade" data-backdrop="static" id="myGiftCardModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					    <div class="modal-dialog">
+					        <div class="modal-content">
+					            <div class="modal-header">
+					                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					                    &times;
+					                </button>
+					                <h4 class="modal-title" id="myModalLabel">
+					                    已绑定的礼品卡
+					                </h4>
+					            </div>
+					            <div id="body" class="modal-body" v-bind:style="{height: giftCardPx +'px'}">
+					            	<span v-if="giftCards==null||giftCards==''">无可用的礼品卡</span>
+					                <div class="gift-body" v-for="(giftCardItem,index) in giftCards">
+						                <span style="margin-left:20px;color:#757575;" class="gift-inner">礼品卡ID: {{giftCardItem.giftCardId}}</span><br> 
+					                	<span style="margin-left:20px;color:#757575;" class="gift-inner">礼品卡总金额: {{giftCardItem.amount}}</span><br>
+					                	<span style="margin-left:20px;color:#757575;" class="gift-inner">礼品卡余额: <i style="color:#ff6700;">{{giftCardItem.balance}}</i></span><br>
+					                	<span style="margin-left:20px;color:#757575;" class="gift-inner">输入使用金额:</span><br>
+					                	<input :id="setInputId(index)" value="" type="text" placeholder="默认全部使用" style="width:100px;height:20px;color:#ff6700;margin-left:120px;text-align:center;"/>
+					                	<button @click="useGift(giftCardItem,index)" id="useGift" class="gift-btn" type="button" >使用</button>
+					                </div>
+					            </div>
+					            <div class="modal-footer" style="text-align:center;">
+					                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+					                </button>
+					            </div>
+					        </div><!-- /.modal-content -->
+					    </div><!-- /.modal -->
+	            	</div>
+				</div>
+				<!-- 子层弹出框 -->
+				<div id="layer-gift" class="layer-gift" style="display:none;">
+					<span style="margin-left:20px;color:#757575;">使用金额:</span>
+					<input id="gift" value="" type="text" placeholder="默认全部使用" style="width:120px;height:30px;"/>
+				</div>
+ 	            <div class="pay-total clearfix">
+	                <ul>
+	                    <li><span>商品件数：</span><i>{{totalQuantity}}件</i></li>
+	                    <li><span>金额合计：</span><i>{{totalPrice}}元</i></li>
+	                    <li><span>活动优惠：</span><i>-0元</i></li>
+	                    <li><span>礼品卡抵扣：</span><i>-{{giftFee}}元</i></li>
+	                    <li><span>运费：</span><i>+{{expressFee}}元</i></li>
+	                    <li class="pay-num"><span>应付总额：</span><i>{{getTotalPrice()}}元</i></li>
+	                </ul>
+	            </div>
+	
+	            <div class="pay-next clearfix">
+	                <button @click="payment()" class="pay-fk">去付款</button>
+	            </div>
+	        </div>
+	    </div> 
+	</div>
+	<div class="container">
+	        <div class="footer_service">
+	            <ul class="clearfix">
+	                <li><a href="">1小时快修服务</a></li>
+	                <li><a href="">7天无理由退货</a></li>
+	                <li><a href="">15天免费换货</a></li>
+	                <li><a href="">满150元包邮</a></li>
+	                <li><a href="">520余家售后网点</a></li>
+	            </ul>
+	        </div>
+	
+	        <div class="footer_link clearfix">
+	            <dl>
+	                <dt>帮助中心</dt>
+	                <dd>购物指南</dd>
+	                <dd>支付方式</dd>
+	                <dd>配送方式</dd>
+	            </dl>
+	            <dl>
+	                <dt>帮助中心</dt>
+	                <dd>购物指南</dd>
+	                <dd>支付方式</dd>
+	                <dd>配送方式</dd>
+	            </dl>
+	            <dl>
+	                <dt>帮助中心</dt>
+	                <dd>购物指南</dd>
+	                <dd>支付方式</dd>
+	                <dd>配送方式</dd>
+	            </dl>
+	            <dl>
+	                <dt>帮助中心</dt>
+	                <dd>购物指南</dd>
+	                <dd>支付方式</dd>
+	                <dd>配送方式</dd>
+	            </dl>
+	            <dl>
+	                <dt>帮助中心</dt>
+	                <dd>购物指南</dd>
+	                <dd>支付方式</dd>
+	                <dd>配送方式</dd>
+	            </dl>
+	            <dl>
+	                <dt>帮助中心</dt>
+	                <dd>购物指南</dd>
+	                <dd>支付方式</dd>
+	                <dd>配送方式</dd>
+	            </dl>
+	
+	            <div class="footer_contact">
+	                <p class="phone">400-100-5678</p>
+	
+	                <p><span style="">周一至周日 8:00-18:00</span>
+	                    <span style="display:none;">2月7日至13日服务时间 9:00-18:00</span><br>（仅收市话费）</p>
+	                <a rel="nofollow" class="btn btn-primary btn-small" href="#">24小时在线客服</a>
+	            </div>
+	        </div>
+
+    	</div>
+
+	    <div class="footer_site">
+	        <div class="container">
+	            <div class="cart_log">
+	                <a href="" title="小米官网"></a>
+	            </div>
+	            <div>
+	                <p>违法和不良信息举报电话：185-0130-1238，本网站所列数据，除特殊说明，所有数据均出自我司实验室测试</p>
+	            </div>
+	        </div>
+	    </div>
+</body>
+	<script type="text/javascript" src="js/lib/jquery.min.js" ></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/layer/layer.js"></script>
+	<script type="text/javascript" src="js/lib/cityselect.js"></script>
+	<script type="text/javascript" src="js/lib/vue.js" ></script>
+	<script type="text/javascript" src="js/order.js" ></script>
+</html>

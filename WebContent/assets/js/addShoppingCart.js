@@ -103,6 +103,9 @@ $(document).ready(function() {
   	choice += '<span>'+products[0].color+'</span><p></p>';
   	choice += '<h4>总计：<span id="totalPrice">'+products[0].sellingPrice+'</span>元</h4>';
   	$("#choice").append(choice);
+  	
+  	$("#nav").find("a").eq(3).attr("href", "comments.html?proId="+products[0].proId);
+  	$("#nav").find("a").eq(4).css("display", "none");
 });
 
 $(document).on("click", ".config", function(){ 
@@ -138,6 +141,7 @@ $(document).on("click", ".phoneColor", function(){
    			proId = products[i].proId;
    	}
    	$("#proId").text(proId);
+   	$("#nav").find("a").eq(3).attr("href", "comments.html?proId="+proId);
 });
 
 $("#addProductToCart").click(function(){
@@ -160,7 +164,7 @@ $("#addProductToCart").click(function(){
 		saveCartInfoToDB(cid,parseInt(proId));
 	}
 	
-	
+	location.href="cartAndOrder/cart.html";
 //	$.ajax({
 //		type:"post",
 //		url:"addProductToCart/"+cid,
@@ -205,7 +209,7 @@ function saveCartInfoToLocal(proId) {
 	$.ajax({
 		type:"post",
 		url:"getCartInfoByProId/"+proId,
-		async:true,
+		async:false,
 		dataType:"json",
 		contentType:"application/json",//@RequestBody识别json字符串
 		data:JSON.stringify(dataLocal),
@@ -213,6 +217,7 @@ function saveCartInfoToLocal(proId) {
 		success:function(data){
 			//更新本地LocalStorage, 应该为追加, 如果已存在则购买数量加1, 未存在则新增一条记录
 			//改为在Service层实现
+			window.localStorage.removeItem("products");
 			window.localStorage.setItem("products",JSON.stringify(data));
 			console.log(window.localStorage.getItem("products"));
 		},
@@ -223,12 +228,13 @@ function saveCartInfoToDB(cid,proId) {
 	$.ajax({
 		type:"post",
 		url:"addProductToCart/"+cid+"/"+proId,
-		async:true,
+		async:false,
 		dataType:"json",
 		//返回的是CartProductInfo对象
 		success:function(data){
 			//更新本地LocalStorage, 应该为追加, 如果已存在则购买数量加1, 未存在则新增一条记录
 			//改为在Service层实现
+			window.localStorage.removeItem("products");
 			window.localStorage.setItem("products",JSON.stringify(data));
 			console.log(window.localStorage.getItem("products"));
 		},

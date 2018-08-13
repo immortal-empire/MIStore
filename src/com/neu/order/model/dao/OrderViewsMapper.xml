@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neu.order.model.dao.OrderViewsMapper" >  
+	
+	<select id="getOrderByType"  resultMap="OrdersView">
+        select * from 
+`order` a 
+left join orderitem b on  a.orderId = b.orderId 
+left join product c on b.productId = c.proId 
+left join giftcarditem d on a.orderId = d.orderId 
+left join address g on g.addressnum = a.addressId 
+where a.orderStatus = #{type,jdbcType=INTEGER} 
+and a.consumerID = #{cid,jdbcType=INTEGER}      
+    </select>
+    
+    <update id="updateOrderStatus" >  
+        UPDATE `order` a
+            SET a.orderStatus =  #{orderStatus}
+         WHERE a.orderId = #{orderId};     
+</update> 
+    
+    
+    <select id="getOrderById"  resultMap="OrdersView">
+        select * from 
+`order` a 
+left join orderitem b on  a.orderId = b.orderId 
+left join product c on b.productId = c.proId 
+left join giftcarditem d on a.orderId = d.orderId 
+left join address g on g.addressnum = a.addressId 
+where a.orderId = #{oid,jdbcType=INTEGER}      
+    </select>
+    
+    <select id="getUncommentedProduct" parameterType="integer" resultMap="ProductsCommentView">
+    select *
+from `order` a LEFT JOIN orderitem b on a.orderId = b.orderId
+LEFT JOIN product c on b.productId = c.proId
+where a.consumerId=#{cid,jdbcType=INTEGER}   
+ and ifevaluate = 0;
+    </select>
+    <resultMap type="ProductsCommentView" id="ProductsCommentView">
+    <result property="orderId" column="orderId"></result>
+    <result property="proid" column="productId"></result>
+  	<result property="name" column="proName"></result>
+  	<result property="color" column="color"></result>
+  	<result property="configuration" column="configuration"></result>
+  	<result property="picture" column="picture"></result>
+  	<result property="amount" column="quantity"></result>  
+    </resultMap>
+  	<resultMap type="OrdersView" id="OrdersView">
+  	<result property="orderId" column="orderId"></result>
+  	<result property="orderStatus" column="orderStatus"></result>
+  	<result property="totalPrice" column="totalPrice"></result>
+  	<result property="invoiceType" column="invoiceType"></result>
+  	<result property="payment" column="payment"></result>
+  	<result property="startTime" column="startTime"></result>
+  	<result property="payTime" column="payTime"></result>
+  	<result property="receiveGoodsTime" column="receiveGoodsTime"></result>
+  	<result property="refundTime" column="refundTime"></result>
+  	<result property="sendGoodsTime" column="sendGoodsTime"></result>
+  	<result property="closeTime" column="closeTime"></result>
+  	<result property="endTime" column="endTime"></result>
+  	<association property="address" javaType="Address">
+  		<result property="addressId" column="addressnum"/>
+  		<result property="consumerId" column="Cid"/>
+  		<result property="addressDetail" column="addressDetail"/>
+  		<result property="consumerName" column="host"/>
+  		<result property="telephone" column="tele"/>
+  		<result property="postcode" column="postcode"/>
+  	</association>
+  	<collection property="giftcardsId" ofType="int" >
+  	<result property="giftCardId" column="d.giftCardId"></result> 	  	 	
+  	</collection>
+  	
+  	<collection property="productsView" ofType="ProductsView" >
+  	<result property="id" column="proId"></result>
+  	<result property="name" column="proName"></result>
+  	<result property="color" column="color"></result>
+  	<result property="configuration" column="configuration"></result>
+  	<result property="picture" column="picture"></result>
+  	<result property="amount" column="quantity"></result>
+  	<result property="price" column="sellingPrice"></result> 	  	 	
+  	</collection>
+  	
+  	
+   
+  	</resultMap>
+</mapper>

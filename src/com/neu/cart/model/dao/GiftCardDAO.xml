@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neu.cart.model.dao.GiftCardDAO">
+
+	<!-- 查询用户礼品卡 -->
+	<select id="selectGiftCard" parameterType="int" resultMap="giftCardResult">
+		select * from giftcard where Cid = #{userId} and state = '1'
+	</select>
+	<resultMap type="GiftCard" id="giftCardResult">
+		<result column="Gid" property="giftCardId"/>
+		<result column="state" property="status"/>
+	</resultMap>
+
+</mapper>

@@ -1,0 +1,216 @@
+<meta charset="UTF-8">
+<header id="mainHeader" class="main-header">
+
+    <!-- Top Bar -->
+    <div class="top-bar bg-gray">
+        <div class="container">
+            <div class="row">
+                <div id="welcome" class="col-sm-12 col-md-4 is-hidden-sm-down">
+                    <ul class="nav-top nav-top-left list-inline t-left">
+                        <li>
+                        	<a id="welcomelink" href="#">
+                        		<i class="fa fa-home"></i>
+                        		<div id="welcomeMessage" style="display: inline;">请登录</div>
+                        	</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-12 col-md-8">
+                    <ul class="nav-top nav-top-right list-inline t-xs-center t-md-right">
+                        <li id="right1">
+                        	<a href="signin.html">
+                        		<i class="fa fa-user"></i>
+                        		<p style="display: inline;">登录</p>
+                        	</a>
+                        </li>
+                        <li id="right2">
+                        	<a href="signup.html"><i class="fa fa-lock"></i>
+                        		<p style="display: inline;">注册</p>
+                        	</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Top Bar -->
+
+    <!-- Header Header -->
+    <div class="header-header bg-white">
+        <div class="container">
+            <div class="row row-rl-0 row-tb-20 row-md-cell">
+                <div class="brand col-md-3 t-xs-center t-md-left valign-middle">
+                    <a href="../index.html" class="logo">
+                        <img src="images/favicon/logo.png" alt="" width="250">
+                    </a>
+                </div>
+                <div class="header-search col-md-9">
+                    <div class="row row-tb-10 ">
+                        <div class="col-sm-8">
+                            <form class="search-form" method="post">
+                            		
+                                <div class="input-group">
+                                	<div>
+	                                    <input name="keyword" id="searchProduct" type="text" class="form-control input-lg search-input" placeholder="输入关键词进行搜索..." required="required" value="">                                                     		                        		                                   		                                          
+	                       				<div class="tags" style="position:absolute;margin-left: 35%;margin-right: 55%;padding-top: 5px;">
+		                                    <a href="#" class="badge">小米8</a>
+	                               		</div>
+                               		</div>
+                                    <div class="input-group-btn">
+                                        <div class="input-group">
+                                            <select id="proType" name="proType" class="form-control input-lg search-select">
+                                                <option value="-1">全部分类</option>
+                                            </select>
+                                            <div class="input-group-btn">
+                                                <button id="searchBtn" type="button" class="btn btn-lg btn-search btn-block btn-orange">
+                                                    <i class="fa fa-search font-16"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-sm-4 t-xs-center t-md-right">
+                            <div class="header-cart">
+                                <a href="../cartAndOrder/cart.html">
+                                    <span class="icon lnr lnr-cart"></span>
+                                    <div><span class="cart-number">0</span>
+                                    </div>
+                                    <span class="title" style="font-size:0.89em;">购物车</span>
+                                </a>
+                            </div>
+                            <div class="header-wishlist ml-20">
+                                <a id="myFavors">
+                                    <span class="icon lnr lnr-heart font-30"></span>
+                                    <span class="title">我的<br>收藏</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Header Header -->
+
+    <!-- Header Menu -->
+    <div class="header-menu bg-blue">
+        <div class="container">
+            <nav class="nav-bar">
+                <div class="nav-header">
+                    <span class="nav-toggle" data-toggle="#header-navbar">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                    </span>
+                </div>
+                <div id="header-navbar" class="nav-collapse">
+                    <ul class="nav-menu">
+                        <li class="active">
+                            <a href="../index.html">首页</a>
+                        </li>
+                      	<li>
+                            <a href="../all_product_category.html">全部分类</a>
+                        </li>                        
+                        <li class="dropdown-mega-menu">
+                            <a href="../category_detail.html?comtyId=1">小米手机</a>
+                            <input type="hidden" value="1">
+                            <div class="mega-menu">
+                                <div class="row row-v-10"></div>
+                            </div>
+                        </li>
+                        
+                        <li class="dropdown-mega-menu">
+                            <a href="../category_detail.html?comtyId=2">电视</a>
+                            <input type="hidden" value="2">
+                            <div class="mega-menu">
+                                <div class="row row-v-10"></div>
+                            </div>
+                        </li>  
+                        
+                        <li class="dropdown-mega-menu">
+                            <a href="../category_detail.html?comtyId=3">笔记本</a>
+                            <input type="hidden" value="3">
+                            <div class="mega-menu">
+                                <div class="row row-v-10"></div>
+                            </div>
+                        </li>  
+                        
+                        <li class="dropdown-mega-menu">
+                            <a href="../category_detail.html?comtyId=4">智能家电</a>
+                            <input type="hidden" value="4">
+                            <div class="mega-menu">
+                                <div class="row row-v-10"></div>
+                            </div>
+                        </li> 
+                        
+                        <li class="dropdown-mega-menu">
+                            <a href="../category_detail.html?comtyId=5">健康家居</a>
+                            <input type="hidden" value="5">
+                            <div class="mega-menu">
+                                <div class="row row-v-10"></div>
+                            </div>
+                        </li>
+                        <li class="dropdown-mega-menu">
+                            <a href="../seckill/seckill.html">限时秒杀</a>
+                        </li> 
+                        <li class="dropdown-mega-menu">
+                            <a href="grouplist.html">拼团特惠</a>
+                        </li>                                   
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- End Header Menu -->
+
+	</header>
+
+	<!-- 模态框（Modal）收藏失败时弹出 -->
+	<div class="modal fade" id="notLogin" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" 
+							aria-hidden="true">×
+					</button>
+					<h4 class="modal-title" id="myModalLabel">
+						查看失败
+					</h4>
+				</div>
+				<div class="modal-body">
+					您还未登录，请先登录！
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="window.location.href='signin.html'"
+						style="background-color: #66b2ff;">
+						马上登录
+					</button>			
+					<button type="button" class="btn btn-default" 
+							data-dismiss="modal">关闭
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<script src="js/jquery-1.12.3.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.tmpl.js"></script>
+<script type="text/javascript" src="js/header.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+
+<script id="dropProduct" type="text/x-jquery-tmpl">
+    <div class="col-md-2">
+	<a href="../addShoppingCart.html?comttyId=${$item.getComttyId()}">
+        <figure class="deal-thumbnail embed-responsive embed-responsive-4by3" 
+        	data-bg-img="images/products/${picture}/search.jpg">                                              
+        </figure>
+        <div class="caption" style="margin:10px 5px;letter-spacing: 1.6pt;">
+         	<p class="text-center">${$item.getCategoryName()}</p>
+         	<p class="text-center text-danger">${sellingPrice}起</p>
+		</div>
+	</a>
+    </div>  
+</script>                                  

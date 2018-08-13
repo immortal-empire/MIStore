@@ -40,67 +40,74 @@
 					<div class="container">
 						<div class="row row-rl-10 row-tb-20">
 							<div class="page-sidebar col-md-4 col-sm-5 col-xs-12">
-								<aside class="sidebar blog-sidebar">
-									<div class="row row-tb-10">
-										<div class="col-xs-12">
-											<div class="widget categories-widget panel pt-20 prl-20">
-												<div class="widget-header">
-													<h3 class="widget-title h-title">订单中心</h3>
-												</div>
-												<div class="widget-body ptb-20">
-													<ul>
-														<li>
-															<a href="#">我的订单</a>
-														</li>
-														<li>
-															<a href="#">团购订单 </a>
-														</li>
-														<li>
-															<a href="#">晒单评价</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-										<div class="col-xs-12">
-											<div class="widget categories-widget panel pt-20 prl-20">
-												<div class="widget-header">
-													<h3 class="widget-title h-title">个人中心</h3>
-												</div>
-												<div class="widget-body ptb-20">
-													<ul>
-														<li>
-															<a href="#">我的个人中心</a>
-														</li>
-														<li>
-															<a href="#">小米礼品卡</a>
-														</li>
-														<li>
-															<a href="favor.html">喜欢的商品</a>
-														</li>
-														<li>
-															<a href="#">地址管理</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-										<div class="col-xs-12">
-											<div class="widget archive-widget panel pt-20 prl-20">
-												<h3 class="widget-title h-title">账户管理</h3>
-												<div class="widget-content ptb-20">
-													<ul>
-														<li>
-															<a href="#">个人信息</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
 
-									</div>
-								</aside>
-							</div>
+	                            <!-- Blog Sidebar -->
+	                            <aside class="sidebar blog-sidebar">
+	                                <div class="row row-tb-10">
+	                                    <div class="col-xs-12">
+	                                        <!-- Categories Widget -->
+	                                        <div class="widget categories-widget panel pt-20 prl-20">
+	                                            <div class="widget-header">
+	                                                <h3 class="widget-title h-title">订单中心</h3>
+	                                            </div>
+	                                            <div class="widget-body ptb-20">
+	                                                <ul>
+	                                                    <li>
+	                                                        <a href="orderView.html?type=all">我的订单</a>
+	                                                    </li>
+	                                                    <li>
+	                                                        <a href="assets/groupOrderProfile.html">团购订单 </a>
+	                                                    </li>
+	                                                    <li>
+	                                                        <a href="unCommentedProduct.html">晒单评价</a>
+	                                                    </li>
+	                                                </ul>
+	                                            </div>
+	                                        </div>
+	                                        <!-- End Categories Widget -->
+	                                    </div>
+	                                     <div class="col-xs-12">
+	                                        <!-- Categories Widget -->
+	                                        <div class="widget categories-widget panel pt-20 prl-20">
+	                                            <div class="widget-header">
+	                                                <h3 class="widget-title h-title">个人中心</h3>
+	                                            </div>
+	                                            <div class="widget-body ptb-20">
+	                                                <ul>
+	                                                    <li>
+	                                                        <a href="person.html">我的个人中心</a>
+	                                                    </li>
+	                                                    <li>
+	                                                        <a href="giftcard.html">小米礼品卡</a>
+	                                                    </li>
+	                                                    <li>
+	                                                        <a href="favor.html">喜欢的商品</a>
+	                                                    </li>
+	                                                    <li>
+	                                                        <a href="address.html">地址管理</a>
+	                                                    </li>
+	                                                </ul>
+	                                            </div>
+	                                        </div>
+	                                        <!-- End Categories Widget -->
+	                                    </div>
+	                                    <div class="col-xs-12">
+	                                        <div class="widget archive-widget panel pt-20 prl-20">
+	                                            <h3 class="widget-title h-title">账户管理</h3>
+	                                            <div class="widget-content ptb-20">
+	                                                <ul>
+	                                                    <li>
+	                                                        <a href="account.html">个人信息</a>
+	                                                    </li>
+	                                                </ul>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	   
+	                                </div>
+	                            </aside>
+	                            <!-- End Blog Sidebar -->
+	                        </div>
 
 							<div class="page-content col-xs-12 col-sm-7 col-md-8">
 								<div class="wishlist-wrapper">
@@ -133,7 +140,7 @@
 		<script type="text/javascript" src="assets/js/jquery.tmpl.js"></script>
 		<script type="text/javascript" src="assets/js/layui.all.js"></script>
 		<script type="text/javascript" src="assets/js/main.js"></script>
-		<script type="text/javascript" src="assets/js/favor.js"></script>
+		<script type="text/javascript" src="assets/js/favor.js"></script>		
 		
 		<script id="favorItem" type="text/x-jquery-tmpl">
 			<tr class="panel alert">
@@ -141,7 +148,7 @@
 					<div class="media-left is-hidden-sm-down">
 						<a href="addShoppingCart.html?comttyId=${comttyId}">
 							<figure class="product-thumb">
-								<img src="assets/images/cart/product_11.jpg" alt="product">
+								<img src="assets/images/products/${picture}/favor.jpg" alt="product">
 							</figure>
 						</a>
 					</div>
@@ -164,7 +171,9 @@
 		<script id="noItem" type="text/x-jquery-tmpl">
 	        <div class="error-page-wrapper t-center">
 		        <div class="error-page-footer">
-		            <h2 class="t-uppercase m-10" style="color:orangered;">还没有喜欢的商品哦，快去进行挑选吧！</h2>
+		            <a href="all_product_category.html">
+						<h2 class="t-uppercase m-10" style="color:orangered;">还没有喜欢的商品哦，快去进行挑选吧！</h2>
+					</a>
 		            <h5 class="color-mid mb-5"></h5>
 		            <p class="color-muted mb-30 font-15">
 		            	可根据商品名进行搜索或查看全部分类<br>
@@ -176,7 +185,9 @@
 		<script id="notLogin" type="text/x-jquery-tmpl">
 	        <div class="error-page-wrapper t-center">
 		        <div class="error-page-footer">
-		            <h2 class="t-uppercase m-10" style="color:orangered;">还未登录哦，请先登录再进行查看吧！</h2>
+		            <a href="signin.html">
+		            	<h2 class="t-uppercase m-10" style="color:orangered;">还未登录哦，请先登录再进行查看吧！</h2>
+					</a>
 		            <h5 class="color-mid mb-5"></h5>
 		            <p class="color-muted mb-30 font-15">
 		            	可根据商品名进行搜索或查看全部分类<br>

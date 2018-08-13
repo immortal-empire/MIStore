@@ -16,4 +16,6 @@ public interface ShoppingCartDAO {
 
 	public void addProNumInCart(Integer id);
 
+	public void updateProNumInCartByCid(@Param("cid")int cid, @Param("quantity")Integer quantity);
+
 }

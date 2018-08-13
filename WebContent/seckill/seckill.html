@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN" xml:lang="zh-CN">
+
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+		<meta charset="UTF-8" />
+		<title>小米闪购 - 小米商城</title>
+		<meta name="viewport" content="width=1226" />
+		<meta name="renderer"  content="webkit">
+		<meta http-equiv="Cache-Control" content="no-transform " />
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+				
+        <link rel="stylesheet" href="css/base.min.css" />
+        <link rel="stylesheet" href="css/seckill.min.css" />
+        <link rel="stylesheet" href="../assets/css/layui.css" />
+    	<link href="../assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    	
+		<script type="text/javascript" src="js/jquery-3.2.0.min.js" ></script>
+		<script type="text/javascript" src="js/seckill.js" ></script>    	        
+		<script type="text/javascript" src=../assets/js/layui.all.js" ></script> 
+		<script type="text/javascript" src="js/header.js" ></script>    		                    
+	</head>
+
+	<body>
+		<ul class="layui-nav" style="background-color: #414141">
+			<li class="layui-nav-item"><div class="layui-logo" style="margin-left: 7%;"><a href="../index.html"><img src="../assets/images/favicon/favicon.ico"></a></div></li>
+			  <li class="layui-nav-item">                        	
+				  <a id="welcomelink" href="#"><i class="fa fa-home"></i>
+	                 <p id="welcomeMessage" style="display: inline-block;">请登录</p>
+	              </a>
+              </li>
+		  </ul>
+		  
+	      <ul class="layui-nav layui-layout-right" style="background-color: #414141">
+			  <li class="layui-nav-item"><a id="right1" href="../signin.html">登录</a></li>
+			  <li class="layui-nav-item"><a id="right2" href="../signup.html">注册</a></li>
+		 </ul>
+		
+		<div class="seckill ">		
+			<div class="seckill-head">
+				<h1>小米闪购</h1>
+			</div>
+			<div class="container J_seckill">
+				<div class="seckill-banner J_seckillBannerWrap">
+					<div class="container J_seckillBanner relative">
+						<div id="J_modalNostart" class=" modal-nostart">
+							<i></i>
+							"活动未开始"
+						</div>
+						<ul id="Seckills" data-id="0">
+							<li class="J_currentBanner active" >
+								<a>
+									<em id="curSeckillTime"></em>
+									<span id="curSeckillInfo"></span>
+								</a>
+							</li>						
+							<li class="" ></li>
+							<li class="" ></li>
+							<li class="" ></li>
+							<li class="" ></li>
+						</ul>
+					</div>
+				</div>
+				<div class="seckill-con">
+					<div class="container J_sectillCon" id="items">
+						<ul class="active J_currentCon clearfix"></ul>
+						<ul class="clearfix"></ul>
+						<ul class="clearfix"></ul>
+						<ul class="clearfix"></ul>
+						<ul class="clearfix"></ul>
+					</div>
+				</div>
+			</div>
+			<div class="seckill-empty hide container J_seckillEmpty">暂无闪购活动</div>
+			<div class="container notic">*小米闪购活动规则：小米闪购商品不享受该商品在小米商城的其他优惠政策（包括但不限于优惠券、赠品、满减、满赠等）<br />温馨提示：因可能存在系统缓存、页面更新导致价格变动异常等不确定性情况出现，如您发现活动商品标价或促销信息有异常，请您立即联系小米客服，以便我们及时补正。</div>
+		</div>
+		
+		<!-- 提醒弹窗 -->
+		<div id="J_modalBuymax" class="modal fade  modal-hide  modal-alert">
+		<!-- <div id="J_modalRemind" class="modal fade  modal-hide modal-remind in" aria-hidden="false" style="display: block;"> -->
+			<a class="close" data-dismiss="modal"><i class="iconfont">&#xe602</i></a>
+			<div class="modal-body">
+				<h3>设置提醒</h3>
+				<p>开抢前15分钟获得提醒</p>
+				<div>
+					<a href="javascript:void(0);" class="btn btn-gray" data-dismiss="modal">取消</a>
+					<a href="" class="btn btn-primary " target="_blank">小米商城App</a>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 已结束弹窗 -->
+		<div id="J_modalOver" class="modal fade  modal-hide  modal-alert modal-notic">
+			<a class="close" data-dismiss="modal"><i class="iconfont">&#xe602</i></a>
+			<div class="modal-bd">
+				<div class="text">
+					<h3>结束啦，快去看看新的闪购</h3></div>
+				<div class="actions">
+					<button class="btn btn-primary J_refresh">立即查看</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- 已超上限 -->
+		<div id="J_modalBuymax" class="modal fade  modal-hide  modal-alert">
+			<a class="close" data-dismiss="modal"><i class="iconfont">&#xe602</i></a>
+			<div class="modal-bd">
+				<div class="text">
+					<h3>闪购已超上限，请下场再来</h3></div>
+				<div class="actions">
+					<button class="btn btn-primary" data-dismiss="modal">知道了</button>
+				</div>
+			</div>
+		</div>
+		
+		<div class="modal-backdrop fade in" style="width: 100%; height: 1772px; display: none;"></div>
+	</body>
+
+</html>

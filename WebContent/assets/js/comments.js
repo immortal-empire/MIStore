@@ -1,8 +1,11 @@
-$(document).ready(function(){
 	//getComments(proId, rank);
-	getComments(2,0);
-	getCommTypeNum(2);//获取每种评价的数量
-	getNewComments(2);//获取最新评价，一天之内
+	var n1 = location.href.length;//地址的总长度
+  	var n2 = location.href.indexOf("=");//取得=号的位置
+  	var proId = location.href.substr(n2+1, n1-n2);//从=号后面的内容
+$(document).ready(function(){	
+	getComments(proId,0);
+	getCommTypeNum(proId);//获取每种评价的数量
+	getNewComments(proId);//获取最新评价，一天之内
 	
 	//鼠标滚动时上方导航栏固定
 	var navOffset=$("#nav").offset().top;  
@@ -14,6 +17,21 @@ $(document).ready(function(){
             $("#nav").removeClass("fixed");  
         }  
     });
+    
+    $.ajax({
+		type:"post",
+		url:"getComttyIdByProId/"+proId,
+		async:false,
+		dataType:"json",
+		
+		//返回的是List<Comments>对象
+		success:function(data){
+			//console.log(data);
+			$("#nav").find("a").eq(4).attr("href", "addShoppingCart.html?comttyId="+data.comttyId);
+		},
+		
+	});
+    
 });
 
 $(".badge").click(function(){
@@ -23,13 +41,13 @@ $(".badge").click(function(){
 	var content = $(this).find("span").text();
 	console.log(content);
 	if(content.indexOf("全部") > -1) {
-		getComments(2, 0);
+		getComments(proId, 0);
 	}else if(content.indexOf("十分满意") > -1) {
-		getComments(2, 5);
+		getComments(proId, 5);
 	}else if(content.indexOf("还不错") > -1) {
-		getComments(2, 3);
+		getComments(proId, 3);
 	}else if(content.indexOf("差评") > -1) {
-		getComments(2, 1);
+		getComments(proId, 1);
 	}	
 	
 });

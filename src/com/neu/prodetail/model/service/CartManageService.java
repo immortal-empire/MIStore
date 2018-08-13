@@ -26,11 +26,14 @@ public class CartManageService {
 		
 		ShoppingCart s = new ShoppingCart();
 		for(CartProductInfo c : localStorageInfo) {
-			//该对象中如果id为null，则一定为用户未登录时所添加
-			if(c.getId() != null) {
-				cartDao.updateProNumInCart(c.getId(),c.getQuantity());
+			//该对象中如果id为null，则一定为用户未登录时所添加，登录时同步购物车中id应该始终为null
+			//退出登录后LocalStorage中应该清空
+			//但是也有可能之前的购物车中有未结算的（查询时需考虑状态）
+			ShoppingCart result = cartDao.selectProductInCartBycid(cid, c.getProId());
+			if(result != null) {
+				cartDao.updateProNumInCartByCid(cid, c.getQuantity());
 			}else {
-
+				
 				s.setcId(cid);
 				s.setProId(c.getProId());
 				s.setProductStatus(c.getProductStatus());

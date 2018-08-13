@@ -50,5 +50,12 @@ public class SearchProductController {
 		
 		return productService.getProductInfoByComttyId(comttyId);		
 	}
+	
+	@RequestMapping(value="/getComttyIdByProId/{proId}", method=RequestMethod.POST)
+	@ResponseBody
+	public Product getComttyIdByProId(@PathVariable int proId) {
+		
+		return productService.getComttyIdByProId(proId);		
+	}
 
 }

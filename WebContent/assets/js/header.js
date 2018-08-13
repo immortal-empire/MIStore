@@ -2,9 +2,15 @@ var user = "";
 
 $(document).ready(function() {
 	user = window.localStorage.getItem("user");
+	if(user==null || user==undefined){
+		user = window.localStorage.setItem("user","");
+		window.localStorage.setItem("products","");
+	}
+	
 	welcome(); //生成左上角的欢迎语
 	toolbar_right(); //右上角的工具栏
 	jumpToFavors();
+	cartNumber();
 	getProTypes();
 	toggle_tags();
 	search_product();
@@ -31,36 +37,39 @@ var welcome = function() {
 			str = "晚上好，"
 		}
 
-		if (user != "") {
-			str += JSON.parse(user).cname;
-		} else {
+		if (user == "" || user==null || user==undefined) {
 			str += "请登录"
+			$("#welcomelink").attr("href","signin.html");
+		} else {
+			str += JSON.parse(user).cname;
 		}
 		str += "！";
 		$("#welcomeMessage").text(str);
 	};
 
 var toolbar_right = function() {
-		if (user != "") {
-			$("#right2").find('i').removeClass("fa-lock");
-			$("#right2").find('i').addClass("fa-sign-out");
-			$("#right1").find("p").text("个人中心");
-			$("#right2").find("p").text("退出登录");
-			$("#right1").find("a").attr("href", "http://www.baidu.com"); //跳转到个人中心
-			$("#right2").find("a").attr("href", "#")
-		} else {
+		if (user == "" || user==null || user==undefined) {
 			$("#right2").find('i').removeClass("fa-sign-out");
 			$("#right2").find('i').addClass("fa-lock");
 			$("#right1").find("p").text("登录");
 			$("#right2").find("p").text("注册");
 			$("#right1").find("a").attr("href", "signin.html"); //跳转到登录
 			$("#right2").find("a").attr("href", "signup.html"); //跳转到注册	
+		} else {
+			$("#right2").find('i').removeClass("fa-lock");
+			$("#right2").find('i').addClass("fa-sign-out");
+			$("#right1").find("p").text("个人中心");
+			$("#right2").find("p").text("退出登录");
+			$("#right1").find("a").attr("href", "person.html"); //跳转到个人中心
+			$("#right2").find("a").attr("href", "#");
 		}
 
 		$("#right2").on('click', function() {
 			if ($(this).find("p").text() == '退出登录') {
-				window.localStorage.setItem("user", "");
-				window.location.reload();
+				window.localStorage.clear();
+				//window.localStorage.removeItem("user");
+				//window.localStorage.removeItem("products");
+				location.href="index.html";
 			}
 		});
 	};
@@ -74,6 +83,24 @@ var jumpToFavors = function() {
 			}
 		});
 	}
+
+var cartNumber = function(){
+	var number = $(".cart-number").text();
+	var count = 0;
+	var products = window.localStorage.getItem("products");
+		
+	if(products==null || products=="" || products==undefined){
+		console.log(products);
+	} else {
+		var carts = JSON.parse(products);
+		console.log(carts);
+		$.each(carts, function(item) {
+			count += carts[item].quantity;
+		});			
+		if(count!=0) number=count;		
+		$(".cart-number").text(number);		
+	}
+}
 
 var getProTypes = function() {
 		var proTypes = "";
@@ -119,12 +146,20 @@ var toggle_tags = function() {
 	};
 
 var search_product = function() {
+    	$("#searchProduct").keydown(function (e) {
+    		var curKey = e.which;
+    		if (curKey == 13) {
+    			$("#searchBtn").click();
+    			return false;
+    		}
+    	});
+        
 		$("#searchBtn").on('click', function() {
 			if (typeof(Storage) !== "undefined") {
 				sessionStorage["keyword"] = $("#searchProduct").val();
 				sessionStorage["proType"] = $("#proType").val();
 			}
-			location.href = "search_product.html"; // + decodeURIComponent($(".search-form").serialize(), true)
+			location.href = "search_product.html";
 		})
 	};
 
@@ -162,7 +197,10 @@ var drop_down = function() {
 				$("#dropProduct").tmpl(products, {
 					getCategoryName: function() {
 						return this.data.twoType.comttyName;
-					}
+					},
+	        		getComttyId:function(){
+	        			return this.data.comttyId;
+	        		}  
 				}).appendTo(tempDrop);
 			}
 		})
